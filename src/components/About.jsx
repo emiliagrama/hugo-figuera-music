@@ -2,33 +2,28 @@ import React, { useState } from "react";
 
 const About = () => {
   const [expanded, setExpanded] = useState(false);
+    const bioParagraphs = [
+    "I'm a music composer and sound designer specialized in cinematic and interactive media. With a focus on video games, trailers, and film, I create emotionally driven scores blending orchestral power, dark atmospheres, and hybrid sound design.",
+    "Whether it’s an epic trailer, a sci-fi narrative, or a high-intensity gameplay moment, I aim to elevate each project’s storytelling and impact through music.",
+    "Recent work includes projects for AAA games, dark fantasy trailers and sci-fi RTS campaigns."
+    ];
 
   return (
     <section className="hf-bio" id="about">
-      <div className="hf-section-shell">
-        <div className="hf-section-title">
-          <h2>About</h2>
-          <div className="hf-title-glow"></div>
+        <div className="hf-section-shell">
+            <div className="hf-section-title">
+                <h2>About</h2>
+            <div className="hf-title-glow"></div>
         </div>
 
-        <p className="hf-bio-intro">
-          I'm a music composer and sound designer specialized in cinematic and
-          interactive media. With a focus on video games, trailers, and film, I
-          create emotionally driven scores blending orchestral power, dark
-          atmospheres, and hybrid sound design.
-        </p>
+        <div className="hf-bio-text">
+                {bioParagraphs.map((paragraph, index) => (
+                    <p key={index} className="hf-bio-intro">
+                        {paragraph}
+                    </p>
+                ))}
+        </div>
 
-        
-          <p>
-            Whether it’s an epic trailer, a sci-fi narrative, or a high-intensity
-            gameplay moment, I aim to elevate each project’s storytelling and
-            impact through music.
-          </p>
-
-          <p>
-            Recent work includes projects for AAA games, dark fantasy trailers and
-            sci-fi RTS campaigns.
-          </p>
             <div className={"hf-bio-extra" + (expanded ? " is-open" : "")}>
           
 

@@ -111,10 +111,10 @@
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  box-shadow:
-    0 0 1px rgba(0, 0, 0, 0.75),
-    0 14px 40px rgba(80, 140, 220, 0.18),
-    0 28px 60px rgba(40, 110, 210, 0.1);
+ box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.55),
+    0 6px 20px rgba(40, 110, 210, 0.12),
+    0 12px 32px rgba(40, 110, 210, 0.06);
 }
 
 /* moving light streak */
@@ -196,17 +196,17 @@
 }
 
 .hf-section-title h2 {
-  margin: 0;                              /* kill default h2 margin */
-  font-size: 0.9rem;                      /* slightly bigger label */
-  text-transform: uppercase;              /* ABOUT / SHOWREEL */
-  letter-spacing: 0.18em;                 /* cinematic spacing */
-  font-weight: 500;                       /* lighter, more elegant */
-  color: rgba(255, 255, 255, 0.65);       /* soft grey instead of white */
+  margin: 0;                              
+  font-size: 1.2rem;                      
+  text-transform: uppercase;              
+  letter-spacing: 0.28em;                 
+  font-weight: 500;                       
+  color: rgba(255, 255, 255, 0.65);       
 }
 
 /* Thin glowing line under titles */
 .hf-title-glow {
-  width: 180px;
+  width: 300px;
   height: 2px;
   margin: 0.6rem auto 0;
   background: linear-gradient(
@@ -283,6 +283,13 @@
   opacity: 1;
   transform: translateY(0);
 }
+.hf-bio-intro + .hf-bio-intro {
+  margin-top: 0.7rem;   /* space between paragraphs */
+}
+
+.hf-bio-intro:last-child {
+  margin-bottom: 1.5rem;
+}
 
 /* "Read more" / "Read less" button under the bio */
 
@@ -328,6 +335,7 @@
   align-items: center;
   padding: 1.1rem 1.25rem;
   border-radius: 18px;
+  margin-bottom: 2rem;
   background: linear-gradient(
     145deg,
     rgba(14, 18, 35, 0.9),
@@ -377,12 +385,13 @@
 .hf-player-info h3 {
   margin: 0 0 0.2rem;
   font-size: 1.1rem;
+  letter-spacing: 0.03em;
 }
 
 .hf-player-info p {
   margin: 0 0 0.6rem;
   font-size: 0.85rem;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 /* Progress bar */
@@ -406,6 +415,66 @@
     #e1e7f7
   );
 }
+/* Start as a dot (but still taking layout space) */
+.hf-player-anim {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center center;
+}
+
+/* When in viewport: grow slowly from dot to full size */
+.hf-player-anim.is-visible {
+  animation: hf-player-grow 2.4s ease-out forwards;
+}
+
+@keyframes hf-player-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;          /* become visible early */
+  }
+  100% {
+    transform: scale(1); /* full size */
+    opacity: 1;
+  }
+}
+.hf-showreel-bg {
+  margin-top: 2.5rem;
+  padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
+  border-radius: 28px;
+
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+    url("/images/studio-background.png");
+  background-size: cover;
+  background-position: center 45%; /* move a bit down so we see more bottom */
+  background-repeat: no-repeat;
+
+  min-height: 360px;              /* ensure enough height on large screens */
+}
+
+.hf-player-anim {
+  opacity: 0;
+  transform: scale(0.85) translateY(24px);
+  transform-origin: center top;
+  transition:
+    transform 750ms cubic-bezier(0.18, 0.86, 0.32, 1.02),
+    opacity 750ms ease-out;
+}
+
+.hf-player-anim.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+@media (min-width: 1200px) {
+  .hf-showreel-bg {
+    padding: 4rem 4rem;
+    min-height: 480px;
+    background-position: center 48%;
+  }
+}
 
 /* -----------------------------------
    PLAYLIST
@@ -419,32 +488,96 @@
   gap: 0.5rem;
 }
 
+/* Base playlist row */
 .hf-playlist-item {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 0.55rem 0.75rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 12px;
   background-color: #10121c;
   cursor: pointer;
   font-size: 0.9rem;
   transition:
     background-color 0.15s ease,
-    transform 0.15s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
+/* Right-side tag in the playlist */
 .hf-playlist-item small {
   opacity: 0.65;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
+/* Hover state */
 .hf-playlist-item:hover {
   background-color: #181b2a;
   transform: translateY(-1px);
 }
 
+/* Active (current) track – soft glow + subtle border */
+.hf-playlist-item.is-active {
+  background: radial-gradient(
+      circle at 0% 50%,
+      rgba(5, 87, 209, 0.445) 0%,
+      rgba(16, 18, 28, 1) 55%
+    );
+  box-shadow: 0 0 24px rgba(120, 170, 255, 0.35);
+  border: 1px solid rgba(140, 180, 255, 0.4);
+}
+
+.hf-player .hf-section-shell {
+  max-width: 1040px;
+  padding: 3rem 2.6rem 2.4rem;
+
+}
 .hf-playlist-item.is-active {
   background-color: #22263a;
+  box-shadow: 0 0 18px rgba(120, 170, 255, 0.25);
+}
+.hf-player-play.is-playing {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75);
+}
+/* Overall Showreel section – no big glowing shell */
+.hf-player {
+  max-width: 1040px;
+  margin: 0 auto 4rem;
+  padding: 4rem 1.5rem 0;
+}
+
+/* Smaller title spacing than About so it feels like its own block */
+.hf-player .hf-section-title {
+  margin-bottom: 1.2rem;
+}
+
+/* Description line under SHOWREEL */
+.hf-player-text {
+  font-size: 0.9rem;
+  opacity: 0.78;
+  max-width: 640px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+
+/* New: console-style deck that wraps main player + playlist */
+.hf-player-deck {
+  margin: 0 auto;
+  padding: 1.9rem 2.1rem 2.1rem;
+  border-radius: 26px;
+  background: radial-gradient(
+      circle at top,
+      rgba(20, 32, 80, 0.35) 0%,
+      rgba(5, 7, 15, 0.98) 55%,
+      rgba(5, 7, 15, 1) 100%
+    );
+  border: 1px solid rgba(120, 170, 255, 0.18);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.9),
+    0 0 22px rgba(40, 120, 220, 0.25);
 }
 
 /* -----------------------------------
