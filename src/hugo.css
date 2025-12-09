@@ -71,13 +71,6 @@
   margin-bottom: 3rem;
 }
 
-.hf-hero-subtitle {
-  font-size: 0.95rem;
-  text-transform: none;
-  opacity: 0.78;
-  margin-bottom: 5rem;
-}
-
 /* ============ CTA BUTTON ============ */
 .hf-btn-border {
   display: inline-block;
@@ -254,6 +247,57 @@
     0 32px 70px rgba(0, 0, 0, 0.9),
     0 0 25px rgba(10, 80, 200, 0.24);
 }
+/* Base subtitle style — bigger + slimmer */
+.hf-hero-subtitle {
+  margin-top: 0.9rem;
+  max-width: 800px;           /* wider line */
+  font-size: 0.92rem;         /* slightly bigger */
+  font-weight: 300;           /* slimmer look */
+  letter-spacing: 0.11rem;    /* keep elegant spacing */
+  line-height: 1.55;          /* cleaner vertical rhythm */
+  text-align: center;
+  opacity: 0.95;
+  margin-bottom: 5rem;
+}
+/* Each character — smoother, barely moving */
+.hf-hero-subletter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(3px);  /* reduced (was 4–8px) */
+  filter: blur(1.5px);         /* softer blur */
+  animation: hf-hero-subletter-in 0.28s ease-out forwards;
+}
+/* Wrapper for a single word: prevents break inside the word */
+.hf-hero-word {
+  display: inline-block;
+}
+/* Typewriter fade-in — refined */
+@keyframes hf-hero-subletter-in {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);   /* softer lift */
+    filter: blur(3px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0px);
+    filter: blur(0.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+    filter: blur(0);
+  }
+}
+@media (max-width: 640px) {
+  .hf-hero-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.06rem;
+
+  }
+}
+
+
 
 /* -----------------------------------
    BIO "READ MORE" BLOCK
@@ -447,7 +491,7 @@
 
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
-    url("/images/studio-background.png");
+    url("/images/studio-background.jpg");
   background-size: cover;
   background-position: center 45%; /* move a bit down so we see more bottom */
   background-repeat: no-repeat;
@@ -579,6 +623,46 @@
     0 28px 70px rgba(0, 0, 0, 0.9),
     0 0 22px rgba(40, 120, 220, 0.25);
 }
+.hf-player-progress {
+  margin-top: 1.5rem;
+}
+
+.hf-progress-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  opacity: 0.72;
+  margin-bottom: 0.35rem;
+}
+
+.hf-progress-track {
+  position: relative;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hf-progress-bar {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: linear-gradient(90deg, #2875ff, #57e0ff);
+  border-radius: inherit;
+}
+
+.hf-progress-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e6f3ff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  pointer-events: none; /* clicks go to the track */
+}
 
 /* -----------------------------------
    FOOTER
@@ -606,9 +690,48 @@
   .hf-hero {
     height: 80vh;
   }
+}
+/* Center the showreel player perfectly on small screens */
+@media (max-width: 640px) {
+  /* Outer shell for this section */
+  #showreel .hf-section-shell {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-  .hf-player-main {
-    flex-direction: row;
-    align-items: flex-start;
+  /* Background block that holds the card */
+  #showreel .hf-showreel-bg {
+    width: 100%;
+    box-sizing: border-box;        /* width includes padding */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+    /* 🔥 tighten horizontal padding so the card can be wider */
+    padding: 3.2rem 0.7rem 3.6rem;   /* top 3.2rem, sides 1rem, bottom 3.6rem */
+    /* if you want even wider: try 0.6rem instead of 1rem */
+  }
+
+  /* The actual player card */
+  #showreel .hf-player-deck {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;              /* 380 / 400 / 420 – tweak to taste */
+  }
+
+  /* Playlist width matches the card */
+  #showreel .hf-playlist {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+  .hf-progress-track{
+    margin:0.8rem ;
   }
 }
+
+
+

@@ -25,8 +25,17 @@ const About = () => {
         </div>
 
             <div className={"hf-bio-extra" + (expanded ? " is-open" : "")}>
-          
-
+          <ul className="hf-links">
+            <li>
+              <a
+                href="https://www.linkedin.com/in/hugo-figuera-85266574/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Linkedin
+              </a>
+              </li>
+              </ul>
           <h3>Available for</h3>
           <ul className="hf-services">
             <li>Game audio &amp; adaptive music</li>
@@ -34,6 +43,7 @@ const About = () => {
             <li>Film / TV scoring</li>
             <li>Music licensing &amp; bespoke sound design</li>
           </ul>
+
             <p>
                 I also release dark drum &amp; bass under the name{" "}
                 <strong>Katharsys</strong> and perform internationally, with over 20
@@ -42,17 +52,12 @@ const About = () => {
           <p>You can explore more of my work as Katharsys here:</p>
           <ul className="hf-links">
             <li>
-              <a href="https://mixcloud.com/..." target="_blank" rel="noreferrer">
-                Mixcloud
-              </a>
-            </li>
-            <li>
               <a
-                href="https://soundcloud.com/..."
+                href="https://soundcloud.com/katharsys"
                 target="_blank"
                 rel="noreferrer"
               >
-                Legacy releases on SoundCloud
+                SoundCloud
               </a>
             </li>
           </ul>
