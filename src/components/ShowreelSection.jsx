@@ -3,20 +3,17 @@ import React, { useRef, useState, useEffect } from "react";
 const tracks = [
   {
     id: 1,
-    title: "Dark Sci-fi Demo",
-    tag: "Tension / build-up",
+    title: "Tension / build-up",
     src: "/audio/Dark Sci-fi Demo01 - Hugo Figuera.wav",
   },
   {
     id: 2,
-    title: "Dark Sci-fi Demo",
-    tag: "Action / movement",
+    title: "Action / movement",
     src: "/audio/Dark Sci-fi Demo02 - Hugo Figuera.wav",
   },
   {
     id: 3,
-    title: "Dark Sci-fi Demo",
-    tag: "Atmospheric depth",
+    title: "Atmospheric depth",
     src: "/audio/Dark Sci-fi demo09 - Hugo Figuera.wav",
   },
 ];
