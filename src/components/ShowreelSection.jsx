@@ -1,22 +1,66 @@
 import React, { useRef, useState, useEffect } from "react";
+import WaveSurfer from "wavesurfer.js";
 
 const tracks = [
+  // STYLE 1 – Scoring
   {
     id: 1,
-    title: "Tension / build-up",
-    src: "/audio/Dark Sci-fi Demo01 - Hugo Figuera.wav",
+    style: "Scoring",
+    title: "Emotional resolve",
+    length: "1:54",
+    src: "/audio/Dark Sci-fi Demo01 - Hugo Figuera.mp3",
   },
   {
     id: 2,
-    title: "Action / movement",
-    src: "/audio/Dark Sci-fi Demo02 - Hugo Figuera.wav",
+    style: "Scoring",
+    title: "Noir tension",
+    length: "2:10",
+    src: "/audio/Dark Sci-fi Demo02 - Hugo Figuera.mp3",
   },
+
+  // STYLE 2 – Trailers
   {
     id: 3,
-    title: "Atmospheric depth",
-    src: "/audio/Dark Sci-fi demo09 - Hugo Figuera.wav",
+    style: "Trailers",
+    title: "Pulse ignition",
+    length: "1:46",
+    src: "/audio/Dark Sci-fi Demo03 - Hugo Figuera.wav",
+  },
+  {
+    id: 4,
+    style: "Trailers",
+    title: "Impact fragments",
+    length: "2:03",
+    src: "/audio/Dark Sci-fi Demo04 - Hugo Figuera.wav",
+  },
+
+  // STYLE 3 – Video game
+  {
+    id: 5,
+    style: "Video game",
+    title: "Sector breach",
+    length: "1:58",
+    src: "/audio/Dark Sci-fi Demo05 - Hugo Figuera.wav",
+  },
+  {
+    id: 6,
+    style: "Video game",
+    title: "Neon outpost",
+    length: "2:21",
+    src: "/audio/Dark Sci-fi Demo06 - Hugo Figuera.wav",
   },
 ];
+
+// give each track its global index (0–5)
+const tracksWithIndex = tracks.map((track, index) => ({ ...track, index }));
+
+// order of the 3 sections
+const STYLES = ["Scoring", "Trailers", "Video game"];
+
+const groupedTracks = STYLES.map((style) => ({
+  style,
+  tracks: tracksWithIndex.filter((t) => t.style === style),
+}));
 
 // helper to display mm:ss
 const formatTime = (sec) => {
@@ -31,64 +75,14 @@ const ShowreelSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-
-  const audioRef = useRef(null);
+  const autoplayRef = useRef(false);
   const deckRef = useRef(null);
-  const progressRef = useRef(null);
+  const waveformRef = useRef(null);
+  const waveSurferRef = useRef(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
   const currentTrack = tracks[currentIndex];
-
-  // Sync <audio> with current track + playing state
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.load(); // load new source when index changes
-    setCurrentTime(0); // reset progress
-
-    if (isPlaying) {
-      audio
-        .play()
-        .then(() => {
-          // all good
-        })
-        .catch((err) => {
-          console.error("Failed to play:", currentTrack.src, err);
-          setIsPlaying(false); // reset UI if something goes wrong
-        });
-    } else {
-      audio.pause();
-    }
-  }, [currentIndex, isPlaying, currentTrack.src]);
-
-  // Track duration + progress updates
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const handleLoaded = () => {
-      setDuration(audio.duration || 0);
-    };
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime || 0);
-    };
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-    };
-
-    audio.addEventListener("loadedmetadata", handleLoaded);
-    audio.addEventListener("timeupdate", handleTimeUpdate);
-    audio.addEventListener("ended", handleEnded);
-
-    return () => {
-      audio.removeEventListener("loadedmetadata", handleLoaded);
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-      audio.removeEventListener("ended", handleEnded);
-    };
-  }, [currentIndex]);
 
   // Observer for the “coming out of the screen” animation
   useEffect(() => {
@@ -108,36 +102,104 @@ const ShowreelSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Create the main WaveSurfer instance once
+  useEffect(() => {
+    if (!isVisible) return;
+    if (!waveformRef.current) return;
+    if (waveSurferRef.current) return; // already created
+
+    const ws = WaveSurfer.create({
+  container: waveformRef.current,
+  url: currentTrack.src,
+
+  // HEIGHT
+  height: 80,              // try 70–90 until you like it
+
+  // IMPORTANT: continuous waveform, not bars
+  barWidth: 0,             // <– remove bars
+  barGap: null,            // <– make sure no gaps
+  cursorWidth: 0,
+
+  // COLORS – tweak to taste
+  waveColor: "rgba(10, 55, 115, 0.45)",      // soft navy/teal blend
+progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
+                 // played part (bright)
+  normalize: true,
+  interact: true,
+  
+});
+
+
+    waveSurferRef.current = ws;
+ws.on("error", (error) => {
+  if (error?.name === "AbortError") return; // ignore fetch aborts (normal)
+  console.error("WaveSurfer error:", error);
+});
+    ws.on("ready", (dur) => {
+  setDuration(dur || 0);
+  setCurrentTime(0);
+
+  // AUTO PLAY IF TRACK WAS CLICKED
+  if (autoplayRef.current) {
+    ws.play();
+    autoplayRef.current = false;
+  }
+});
+
+
+    ws.on("timeupdate", (time) => {
+      setCurrentTime(time || 0);
+    });
+
+    ws.on("play", () => setIsPlaying(true));
+    ws.on("pause", () => setIsPlaying(false));
+    ws.on("finish", () => setIsPlaying(false));
+
+    return () => {
+      ws.destroy();
+      waveSurferRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
+
+  // When the current track changes, load it into WaveSurfer
+  useEffect(() => {
+    const ws = waveSurferRef.current;
+    if (!ws) return;
+
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+
+    ws.load(currentTrack.src);
+  }, [currentTrack.src]);
+
   const togglePlay = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    setIsPlaying((prev) => !prev);
+    const ws = waveSurferRef.current;
+    if (!ws) return;
+    ws.playPause();
   };
 
   const handleSelectTrack = (index) => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = 0; // restart from beginning
+  const ws = waveSurferRef.current;
+
+  // If user clicks the already-selected track,
+  // just toggle play/pause on the existing WaveSurfer instance
+  if (index === currentIndex && ws) {
+    if (isPlaying) {
+      ws.pause();
+    } else {
+      ws.play();
     }
-    setCurrentIndex(index);
-    setIsPlaying(true); // auto-play newly selected track
-  };
+    return; // stop here, no need to change track
+  }
 
-  const handleSeek = (event) => {
-    const bar = progressRef.current;
-    const audio = audioRef.current;
-    if (!bar || !audio || !duration) return;
+  // User selected a different track → load it and autoplay when ready
+  autoplayRef.current = true;   // tell WaveSurfer to autoplay next "ready"
+  setCurrentIndex(index);
+};
 
-    const rect = bar.getBoundingClientRect();
-    const clickX = event.clientX - rect.left;
-    const ratio = Math.min(Math.max(clickX / rect.width, 0), 1);
-    const newTime = ratio * duration;
 
-    audio.currentTime = newTime;
-    setCurrentTime(newTime);
-  };
-
-  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
     <section className="hf-player" id="showreel">
@@ -153,67 +215,68 @@ const ShowreelSection = () => {
 
       {/* Static studio photo background */}
       <div className="hf-showreel-bg">
-        {/* Animated deck only */}
+        {/* Glass deck + playlist */}
         <div
           ref={deckRef}
           className={
             "hf-player-deck hf-player-anim" + (isVisible ? " is-visible" : "")
           }
         >
+          {/* MAIN PLAYER BAR */}
           <button
             type="button"
             className={"hf-player-play" + (isPlaying ? " is-playing" : "")}
             onClick={togglePlay}
           >
-            {isPlaying ? "‖" : "►"}
+            <span className="hf-icon">
+    {isPlaying ? "" : "►"}
+  </span>
           </button>
 
           <div className="hf-player-info">
             <h3>{currentTrack.title}</h3>
-            <p>{currentTrack.tag}</p>
+            <p className="hf-player-style">{currentTrack.style}</p>
           </div>
 
-          {/* PROGRESS BAR */}
+          {/* WAVEFORM PROGRESS BAR */}
           <div className="hf-player-progress">
             <div className="hf-progress-time">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>
-            <div
-              className="hf-progress-track"
-              ref={progressRef}
-              onClick={handleSeek}
-            >
-              <div
-                className="hf-progress-bar"
-                style={{ width: `${progressPercent}%` }}
-              />
-              <div
-                className="hf-progress-handle"
-                style={{ left: `${progressPercent}%` }}
-              />
-            </div>
+            <div className="hf-progress-wave" ref={waveformRef} />
           </div>
 
-          <audio ref={audioRef}>
-            <source src={currentTrack.src} type="audio/wav" />
-          </audio>
+          {/* 3 SECTIONS BY STYLE, WITHOUT INDIVIDUAL WAVES */}
+          <div className="hf-style-groups">
+            {groupedTracks.map((group) => (
+              <section className="hf-style-group" key={group.style}>
+                <header className="hf-style-header">
+                  <h4 className="hf-style-title">{group.style}</h4>
+                </header>
 
-          <ul className="hf-playlist">
-            {tracks.map((track, index) => (
-              <li
-                key={track.id}
-                className={
-                  "hf-playlist-item" +
-                  (index === currentIndex ? " is-active" : "")
-                }
-                onClick={() => handleSelectTrack(index)}
-              >
-                <span>{track.title}</span>
-                <small>{track.tag}</small>
-              </li>
+                <ul className="hf-style-tracklist">
+                  {group.tracks.map((track) => (
+                    <li
+                      key={track.id}
+                      className={
+                        "hf-style-track" +
+                        (track.index === currentIndex ? " is-active" : "")
+                      }
+                      onClick={() => handleSelectTrack(track.index)}
+                    >
+                      <span className="hf-style-track-title">
+                        {track.title}
+                      </span>
+                      <span className="hf-style-track-length">
+                        {track.length}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>

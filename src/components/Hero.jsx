@@ -24,7 +24,7 @@ const Hero = () => {
 
       <div className="hf-hero-content">
         <p className="hf-hero-tagline">
-          CINEMATIC MUSIC &amp; SOUND DESIGN FOR GAMES, TRAILERS &amp; FILM
+          CINEMATIC MUSIC COMPOSER &amp; SOUND DESIGNER FOR GAMES, TRAILERS &amp; FILM
         </p>
 
         <h1 className="hf-hero-title">HUGO FIGUERA</h1>

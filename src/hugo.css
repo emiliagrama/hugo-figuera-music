@@ -55,7 +55,7 @@ body {
 
 .hf-hero-content {
   position: relative;
-  max-width: 720px;
+  max-width: 780px;
   text-align: center;
 }
 
@@ -387,120 +387,33 @@ body {
    PLAYER TEXT + CARD
 ----------------------------------- */
 
+/* =========================================
+   SHOWREEL – HUGO FIGUERA
+   (main player + background + 3 style blocks)
+========================================= */
+
+/* Overall Showreel section */
+.hf-player {
+  max-width: 1040px;
+  margin: 0 auto 4rem;
+  padding: 4rem 1.5rem 0;
+}
+
+/* Title area inside Showreel */
+.hf-player .hf-section-title {
+  margin-bottom: 1.2rem;
+}
+
+/* Subtitle text under SHOWREEL */
 .hf-player-text {
-  font-size: 0.95rem;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.78;
+  max-width: 640px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
 }
 
-/* Player card */
-
-.hf-player-main {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  padding: 1.1rem 1.25rem;
-  border-radius: 18px;
-  margin-bottom: 2rem;
-  background: linear-gradient(
-    145deg,
-    rgba(14, 18, 35, 0.9),
-    rgba(5, 7, 18, 0.96)
-  );
-  border: 1px solid rgba(163, 178, 219, 0.2);
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.9),
-    0 0 1px rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(14px);
-}
-
-/* Play / pause button */
-
-.hf-player-play {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1px solid rgba(163, 178, 219, 0.5);
-  background: radial-gradient(circle at 20% 0,
-    #263260,
-    #0b0f23 70%);
-  color: #e8ecf9;
-  font-size: 1.3rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.8);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.hf-player-play.is-playing {
-  background: radial-gradient(circle at 20% 0,
-    #e1e7f7,
-    #a9b2cb 65%);
-  color: #050509;
-  border-color: rgba(225, 231, 247, 0.9);
-  transform: scale(1.03);
-}
-
-/* Track info */
-
-.hf-player-info h3 {
-  margin: 0 0 0.2rem;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
-}
-
-.hf-player-info p {
-  margin: 0 0 0.6rem;
-  font-size: 0.85rem;
-  opacity: 0.75;
-}
-
-/* Progress bar */
-
-.hf-progress {
-  width: 100%;
-  height: 3px;
-  border-radius: 999px;
-  background: #242637;
-  overflow: hidden;
-}
-
-.hf-progress-bar {
-  height: 100%;
-  width: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    #1f46ff,
-    #3f7dff,
-    #e1e7f7
-  );
-}
-
-
-/* When in viewport: grow slowly from dot to full size */
-.hf-player-anim.is-visible {
-  animation: hf-player-grow 2.4s ease-out forwards;
-}
-
-@keyframes hf-player-grow {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;          /* become visible early */
-  }
-  100% {
-    transform: scale(1); /* full size */
-    opacity: 1;
-  }
-}
+/* Background photo behind the glass deck */
 .hf-showreel-bg {
   margin-top: 2.5rem;
   padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
@@ -510,19 +423,10 @@ body {
     linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
     url("/images/studio-background.jpg");
   background-size: cover;
-  background-position: center 45%; /* move a bit down so we see more bottom */
+  background-position: center 45%;
   background-repeat: no-repeat;
 
-  min-height: 360px;              /* ensure enough height on large screens */
-}
-
-.hf-player-anim {
-  opacity: 0;
-  transform: scale(0.85) translateY(24px);
-  transform-origin: center top;
-  transition:
-    transform 750ms cubic-bezier(0.18, 0.86, 0.32, 1.02),
-    opacity 750ms ease-out;
+  min-height: 360px;
 }
 
 @media (min-width: 1200px) {
@@ -533,91 +437,7 @@ body {
   }
 }
 
-/* -----------------------------------
-   PLAYLIST
------------------------------------ */
-
-.hf-playlist {
-  list-style: none;
-  padding: 0;
-  margin: 1.2rem 0 0;
-  display: grid;
-  gap: 0.5rem;
-}
-
-/* Base playlist row */
-.hf-playlist-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.55rem 0.9rem;
-  border-radius: 12px;
-  background-color: #10121c;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition:
-    background-color 0.15s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-/* Right-side tag in the playlist */
-.hf-playlist-item small {
-  opacity: 0.65;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Hover state */
-.hf-playlist-item:hover {
-  background-color: #181b2a;
-  transform: translateY(-1px);
-}
-
-/* Active (current) track – soft glow + subtle border */
-.hf-playlist-item.is-active {
-  background: radial-gradient(
-      circle at 0% 50%,
-      rgba(5, 87, 209, 0.445) 0%,
-      rgba(16, 18, 28, 1) 55%
-    );
-  box-shadow: 0 0 24px rgba(120, 170, 255, 0.35);
-  border: 1px solid rgba(140, 180, 255, 0.4);
-}
-
-.hf-player .hf-section-shell {
-  max-width: 1040px;
-  padding: 3rem 2.6rem 2.4rem;
-
-}
-.hf-playlist-item.is-active {
-  background-color: #22263a;
-  box-shadow: 0 0 18px rgba(120, 170, 255, 0.25);
-}
-
-/* Overall Showreel section – no big glowing shell */
-.hf-player {
-  max-width: 1040px;
-  margin: 0 auto 4rem;
-  padding: 4rem 1.5rem 0;
-}
-
-/* Smaller title spacing than About so it feels like its own block */
-.hf-player .hf-section-title {
-  margin-bottom: 1.2rem;
-}
-
-/* Description line under SHOWREEL */
-.hf-player-text {
-  font-size: 0.9rem;
-  opacity: 0.78;
-  max-width: 640px;
-  margin: 0 auto 1.8rem;
-  text-align: center;
-}
-
-/* New: console-style deck that wraps main player + playlist */
+/* Glass console deck that wraps main player + style groups */
 .hf-player-deck {
   margin: 0 auto;
   padding: 1.9rem 2.1rem 2.1rem;
@@ -633,16 +453,148 @@ body {
     0 28px 70px rgba(0, 0, 0, 0.9),
     0 0 22px rgba(40, 120, 220, 0.25);
 }
+
+/* Entrance animation – “coming out of the screen” */
+.hf-player-anim {
+  opacity: 0;
+  transform: scale(0.85) translateY(24px);
+  transform-origin: center top;
+  transition:
+    transform 750ms cubic-bezier(0.18, 0.86, 0.32, 1.02),
+    opacity 750ms ease-out;
+}
+
+.hf-player-anim.is-visible {
+  animation: hf-player-grow 2.4s ease-out forwards;
+}
+
+@keyframes hf-player-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* -----------------------------------
+   MAIN PLAYER (top of deck)
+----------------------------------- */
+
+/* Play / pause button */
+.hf-player-play {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(40, 80, 130, 0.15); /* blue tint */
+  border: 1px solid rgba(80, 130, 200, 0.35);
+  box-shadow: 0 0 12px rgba(30, 80, 150, 0.25);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: rgba(49, 119, 146, 0.767);
+
+  
+   cursor: pointer;
+  transition: all 0.28s ease;
+}
+
+.hf-player-play:hover {
+  background: rgba(80,120,180,0.25);            /* brighter blue on hover */
+  border-color: rgba(120,160,220,0.45);         /* sharpens the edge */
+  box-shadow: 
+    0 0 16px rgba(60,130,220,0.35),             /* more glow */
+    0 0 32px rgba(60,130,220,0.20);             /* outer halo */
+  transform: scale(1.04);                        /* tiny lift */
+}
+
+.hf-player-play.is-playing {
+  /* keep the dark sci-fi look, just a bit stronger than hover */
+  background: rgba(41, 99, 165, 0.3);          /* brighter blue than idle */
+  border-color: rgba(42, 91, 155, 0.7);       /* stronger edge */
+  box-shadow:
+    0 0 20px rgba(43, 99, 172, 0.55),           /* main glow */
+    0 0 40px rgba(25, 64, 114, 0.28);           /* outer halo */
+
+  transform: scale(1.03);                        /* tiny “energised” bump */
+}
+.hf-player-play.is-playing .hf-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.hf-player-play.is-playing .hf-icon::before,
+.hf-player-play.is-playing .hf-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 4px;           /* bar thickness */
+  height: 16px;         /* bar height (matches icon size) */
+  background: rgba(67, 97, 122, 0.95); /* light blue/white */
+  border-radius: 2px;
+}
+
+.hf-player-play.is-playing .hf-icon::before {
+  left: 0;
+}
+
+.hf-player-play.is-playing .hf-icon::after {
+  right: 0;
+}
+
+
+/* Track info (title + style) */
+/* Main track name inside the player */
+.hf-player-info h3 {
+  font-family: inherit;           /* same as SHOWREEL */
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;         /* give it that spaced, showreel vibe */
+  text-transform: uppercase;      /* optional: comment this out if you prefer “Noir tension” case */
+  color: #686b75;
+  margin: 0 0 0.15rem;
+}
+
+
+.hf-player-info p {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  opacity: 0.35;
+}
+
+.hf-player-style {
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;          /* very close to SHOWREEL look */
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(202, 202, 207, 0.87);
+}
+
+
+/* Progress bar under the main player */
 .hf-player-progress {
   margin-top: 1.5rem;
 }
 
 .hf-progress-time {
+  font-family: inherit;
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
   opacity: 0.72;
   margin-bottom: 0.35rem;
+  color: rgba(202, 202, 207, 0.87);
 }
 
 .hf-progress-track {
@@ -673,6 +625,174 @@ body {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
   pointer-events: none; /* clicks go to the track */
 }
+
+/* -----------------------------------
+   STYLE GROUPS (Scoring / Trailers / Video game)
+----------------------------------- */
+
+.hf-style-groups {
+  margin-top: 1.8rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+/* Style card */
+.hf-style-group {
+  padding: 0.9rem 1rem 0.8rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 18, 35, 0.95),
+    rgba(5, 7, 18, 0.97)
+  );
+  border: 1px solid rgba(80, 116, 182, 0.55);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(2, 5, 18, 0.75);
+}
+
+/* Header inside each style card */
+.hf-style-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.hf-style-title {
+  font-family: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(52, 102, 150, 0.78);
+  margin-bottom: 0.75rem;
+}
+
+/* WaveSurfer container for the style bar */
+.hf-style-wave {
+  height: 24px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+}
+
+/* Make sure the canvas fills the strip */
+.hf-style-wave canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  
+}
+.hf-progress-wave {
+  width: 100%;
+  height: 80px;            /* match JS height */
+  padding: 20px 0;         /* squeeze waveform vertically */
+  position: relative;
+  overflow: hidden;        /* hide edges of the canvas */
+  border-radius: 999px;    /* soft pill shape for the whole bar */
+}
+
+/* optional: a faint center line, like in your reference */
+.hf-progress-wave::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* make the actual canvas take full width */
+.hf-progress-wave canvas {
+  width: 100% !important;
+  height: 100% !important;
+  
+}
+
+
+/* Track list inside each style */
+.hf-style-tracklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hf-style-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.12s ease;
+}
+
+.hf-style-track + .hf-style-track {
+  margin-top: 0.12rem;
+}
+
+/* Hover state */
+.hf-style-track:hover {
+  background: radial-gradient(circle at left, rgba(65, 110, 225, 0.35), transparent 60%);
+  box-shadow: 0 0 0 1px rgba(80, 125, 240, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Active (current) track */
+/* Active (current) track */
+.hf-style-track.is-active {
+  background: linear-gradient(
+    90deg,
+    rgba(7, 46, 70, 0.548),
+    rgba(70, 139, 200, 0.432)
+  );
+  border: 1px solid rgba(70, 140, 200, 0.35); /* MATCH CARD BORDER */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.55);          /* softer than before */
+  color: #e8f1ff;
+}
+
+
+
+.hf-style-track-title {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 100;
+  letter-spacing: 0.06em;      /* a little spacing, but less than labels */
+  color: rgba(210, 211, 214, 0.9);
+}
+
+.hf-style-track-length {
+  font-family: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  color: rgba(201, 202, 206, 0.9);
+}
+
+
+/* Two styles on top row, video game full width on large screens */
+@media (min-width: 900px) {
+  .hf-style-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hf-style-group:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 
 /* -----------------------------------
    FOOTER
