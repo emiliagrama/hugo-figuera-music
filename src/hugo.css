@@ -408,8 +408,8 @@ body {
 
 /* Subtitle text under SHOWREEL */
 .hf-player-text {
-  font-size: 0.9rem;
-  opacity: 0.78;
+  font-size: 1rem;
+  opacity: 0.68;
   max-width: 640px;
   margin: 0 auto 1.8rem;
   text-align: center;
@@ -861,42 +861,39 @@ body {
     margin:0.8rem ;
   }
 }
-@media (min-width: 900px) and (max-width: 1400px) {
-  body {
-    font-size: 17px;  /* instead of 16px base */
-  }
-}
+
 /* ============================================= */
 /* TABLETS / SURFACE / NEST HUB – TEXT BOOST     */
 /* 900px – 1400px width                          */
 /* ============================================= */
-@media (min-width: 700px) and (max-width: 1400px) {
+@media (min-width:820px) and (max-width: 1040px) {
 
   /* ABOUT copy */
   #about p,
   #about li {
-    font-size: 1.30rem !important;   /* bigger than desktop */
-    line-height: 1.7 !important;
-    color: rgba(255, 255, 255, 0.86) !important; /* a bit brighter */
+    font-size: 1.20rem !important;   /* bigger than desktop */
+    color: rgba(199, 196, 196, 0.993) !important; /* a bit brighter */
   }
 
-  
-  .hf-footer p,
   .hf-footer a {
-    font-size: 1.45rem;
-    line-height: 1.8;
+    font-size: 1.20rem;
   }
-  
+  .hf-footer p {
+    font-size: 1.20rem;
+    color: rgba(163, 161, 161, 0.86) !important;
+  }
 /* HARD OVERRIDE: Tablet screens 700px–1200px */
   .hf-hero-subletter {
-    font-size: 1.35rem !important;  /* ~23px — guaranteed visible */
-    line-height: 1.6 !important;
+    font-size: 1.25rem !important;  /* ~23px — guaranteed visible */
     font-weight: 350;
   }
 
   .hf-hero-tagline {
     font-size: 1.2rem !important;   /* ~19px — balanced */
     letter-spacing: 0.22em;
+  }
+  .hf-player-text {
+    font-size: 1.2rem !important;
   }
 }
 
