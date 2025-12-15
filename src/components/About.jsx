@@ -50,7 +50,7 @@ const About = () => {
 
             <div className="hf-availability-photo">
                 <img
-                src="/images/hugo for site.jpg"
+                src="/images/hugo profile.png"
                 alt="Hugo Figuera"
                 />
             </div>

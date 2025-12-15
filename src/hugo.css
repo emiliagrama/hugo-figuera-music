@@ -332,7 +332,7 @@ body {
 }
 
 .hf-availability-photo img {
-  width: 190px;
+  width: 180px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
@@ -340,8 +340,9 @@ body {
   box-shadow:
     0 0 35px rgba(60, 120, 255, 0.25),
     inset 0 0 0 1px rgba(140, 180, 255, 0.25);
-   
+
 }
+
 
 /* Mobile: photo moves above text */
 @media (max-width: 900px) {
@@ -429,6 +430,138 @@ body {
   border-color: rgba(160, 205, 255, 0.9);
   box-shadow: 0 0 12px rgba(60, 130, 230, 0.45);
 }
+/* =========================
+   CREDITS
+========================= */
+.hf-credits {
+  padding: 4.8rem 0 2.8rem; /* tiny lift in spacing */
+  position: relative;
+}
+
+.hf-credits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.6rem; /* a touch more breathing room */
+}
+
+.hf-credit-card {
+  border-radius: 18px;
+  padding: 1.25rem 1.3rem;
+  background: radial-gradient(
+    circle at top,
+    rgba(40, 80, 160, 0.18) 0%,
+    rgba(5, 7, 15, 0.96) 60%,
+    rgba(5, 7, 15, 1) 100%
+  );
+  border: 1px solid rgba(120, 170, 255, 0.18);
+   box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(10, 20, 40, 0.6);
+  transition: transform 180ms ease, border-color 180ms ease;
+  text-decoration: none; /* important if it's an <a> */
+  color: inherit;        /* important if it's an <a> */
+  display: block;        /* makes <a> behave like a card */
+}
+
+.hf-credit-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(120, 170, 255, 0.32);
+}
+
+.hf-credit-card.is-link {
+  cursor: pointer;
+}
+
+.hf-credit-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.hf-credit-studio {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hf-credit-tag {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 170, 255, 0.28);
+  background: rgba(20, 50, 100, 0.22);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.hf-credit-title {
+  font-size: 1.08rem;
+  font-weight: 550;
+  letter-spacing: 0.042em;
+  margin-bottom: 0.5rem;
+}
+
+.hf-credit-meta {
+  font-size: 0.95rem;
+  opacity: 0.78;
+  line-height: 1.45;
+  color: #d8e0e6;
+}
+
+.hf-credits-note {
+  margin-top: 1.05rem;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+.hf-credit-link {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.hf-credit-link a {
+  color: rgba(120, 170, 255, 0.9);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(120, 170, 255, 0.25);
+  padding-bottom: 2px;
+}
+
+.hf-credit-link a:hover {
+  opacity: 1;
+  border-bottom-color: rgba(120, 170, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hf-credits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Keep Credits contained like About */
+.hf-credits .hf-section-shell {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Mobile/tablet: give side padding so it never touches the edges */
+@media (max-width: 900px) {
+  .hf-credits {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .hf-credits .hf-section-shell {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}
+
 
 /* =========================================
    SHOWREEL – HUGO FIGUERA
