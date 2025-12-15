@@ -317,6 +317,47 @@ body {
     0 32px 70px rgba(0, 0, 0, 0.9),
     0 0 25px rgba(10, 80, 200, 0.24);
 }
+/* Availability + photo layout */
+.hf-availability-layout {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.hf-availability-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.hf-availability-photo img {
+  width: 190px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.7;
+  box-shadow:
+    0 0 35px rgba(60, 120, 255, 0.25),
+    inset 0 0 0 1px rgba(140, 180, 255, 0.25);
+   
+}
+
+/* Mobile: photo moves above text */
+@media (max-width: 900px) {
+  .hf-availability-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hf-availability-photo {
+    order: -1;
+  }
+
+  .hf-availability-photo img {
+    width: 150px;
+  }
+}
+
 /* -----------------------------------
    BIO "READ MORE" BLOCK
 ----------------------------------- */
@@ -331,26 +372,30 @@ body {
 }
 
 .hf-bio-extra {
-  font-size: 0.98rem;
-  line-height: 1.6;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(8px);
+  visibility: hidden;
+  transform: translateY(-6px);
   transition:
-    max-height 0.35s ease,
-    opacity 0.25s ease,
-    transform 0.25s ease;
-   color: rgba(255, 255, 255, 0.78);
-
-
+    max-height 360ms ease,
+    opacity 220ms ease,
+    transform 220ms ease,
+    visibility 0s linear 360ms;
 }
 
 .hf-bio-extra.is-open {
-  max-height: 600px;
+  max-height: 1200px;
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
+  transition:
+    max-height 360ms ease,
+    opacity 220ms ease,
+    transform 220ms ease,
+    visibility 0s;
 }
+
 .hf-bio-intro + .hf-bio-intro {
   margin-top: 0.7rem;   /* space between paragraphs */
 }
@@ -384,10 +429,6 @@ body {
   border-color: rgba(160, 205, 255, 0.9);
   box-shadow: 0 0 12px rgba(60, 130, 230, 0.45);
 }
-
-/* -----------------------------------
-   PLAYER TEXT + CARD
------------------------------------ */
 
 /* =========================================
    SHOWREEL – HUGO FIGUERA
@@ -563,7 +604,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.15em;         /* give it that spaced, showreel vibe */
   text-transform: uppercase;      /* optional: comment this out if you prefer “Noir tension” case */
-  color: #686b75;
+  color: #81838a;
   margin: 0 0 0.15;
   margin-top: 10;
 }
@@ -581,7 +622,7 @@ body {
   letter-spacing: 0.25em;          /* very close to SHOWREEL look */
   text-transform: uppercase;
   font-weight: 500;
-  color: rgba(202, 202, 207, 0.87);
+  color: rgba(238, 238, 243, 0.87);
 }
 
 
@@ -734,7 +775,6 @@ body {
   font-size: 0.85rem;
   cursor: pointer;
   transition:
-    background 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.12s ease;
 }
@@ -789,16 +829,43 @@ body {
 .hf-footer {
   text-align: center;
   padding: 3rem 1rem 2rem;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  font-size: 1rem;
+  opacity: 0.65;
 }
 .hf-footer-email {
   display: block;
   margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
   color: #8eb5e9;
   font-weight: 200;
   text-decoration: none;
   font-size: 1.1rem;
+}
+/* NEW: align email + button nicely without changing your email block spacing */
+.hf-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.8rem; /* matches your current .hf-footer-email margin-top */
+  margin-bottom: 0.9rem;
+}
+
+/* Your link is currently display:block + margin-top; inside flex it should be inline */
+.hf-footer-contact .hf-footer-email {
+  display: inline-block;
+  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
+}
+
+
+
+/* Mobile: keep it clean (stack) */
+@media (max-width: 420px) {
+  .hf-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 /* -----------------------------------
    RESPONSIVE
@@ -833,6 +900,7 @@ body {
     flex-direction: column;
     align-items: center;
   }
+ 
 
   /* Background block that holds the card */
   #showreel .hf-showreel-bg {

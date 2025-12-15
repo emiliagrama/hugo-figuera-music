@@ -36,15 +36,27 @@ const About = () => {
               </a>
               </li>
               </ul>
-          <h3>Available for</h3>
-          <ul className="hf-services">
-            <li>Game audio &amp; adaptive music</li>
-            <li>Trailer music (original, remix or hybrid)</li>
-            <li>Film / TV scoring</li>
-            <li>Music licensing &amp; bespoke sound design</li>
-          </ul>
+             <div className="hf-availability-layout">
 
-            <p>
+            <div className="hf-availability-text"> 
+                    <h3>Available for</h3>
+                    <ul className="hf-services">
+                        <li>Game audio &amp; adaptive music</li>
+                        <li>Trailer music (original, remix or hybrid)</li>
+                        <li>Film / TV scoring</li>
+                        <li>Music licensing &amp; bespoke sound design</li>
+                    </ul>
+            </div>
+
+            <div className="hf-availability-photo">
+                <img
+                src="/images/hugo for site.jpg"
+                alt="Hugo Figuera"
+                />
+            </div>
+
+            </div>
+                        <p>
                 I also release dark drum &amp; bass under the name{" "}
                 <strong>Katharsys</strong> and perform internationally, with over 20
                 years of experience in the electronic music scene.

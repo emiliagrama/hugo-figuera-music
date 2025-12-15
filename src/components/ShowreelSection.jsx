@@ -1,53 +1,51 @@
 import React, { useRef, useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
 
-const tracks = [
-  // STYLE 1 – Scoring
+const tracks = [ 
+  // STYLE 3 – Video game
   {
     id: 1,
-    style: "Scoring",
-    title: "Emotional resolve",
-    length: "1:54",
-    src: "/audio/Dark Sci-fi Demo01 - Hugo Figuera.mp3",
+    style: "Video game",
+    title: "Kessler syndrome",
+    length: "1:09",
+    src: "/audio/Dark Sci-fi Demo01.mp3",
   },
   {
     id: 2,
-    style: "Scoring",
-    title: "Noir tension",
-    length: "2:10",
-    src: "/audio/Dark Sci-fi Demo02 - Hugo Figuera.mp3",
+    style: "Video game",
+    title: "Neural Drift",
+    length: "1:02",
+    src: "/audio/Dark Sci-fi Demo02.mp3",
   },
-
-  // STYLE 2 – Trailers
+  // STYLE 1 – Scoring
   {
     id: 3,
-    style: "Trailers",
-    title: "Pulse ignition",
-    length: "1:46",
-    src: "/audio/Dark Sci-fi Demo03 - Hugo Figuera.wav",
+    style: "Scoring",
+    title: "Faith",
+    length: "2:54",
+    src: "/audio/Faith.mp3",
   },
   {
     id: 4,
-    style: "Trailers",
-    title: "Impact fragments",
-    length: "2:03",
-    src: "/audio/Dark Sci-fi Demo04 - Hugo Figuera.wav",
+    style: "Scoring",
+    title: "The Second Sun (dark orchestral polychords)",
+    length: "0:51",
+    src: "/audio/The Second Sun (dark orchestral polychords).mp3",
   },
-
-  // STYLE 3 – Video game
+  // STYLE 2 – Trailers
   {
     id: 5,
-    style: "Video game",
-    title: "Sector breach",
-    length: "1:58",
-    src: "/audio/Dark Sci-fi Demo05 - Hugo Figuera.wav",
+    style: "Trailers",
+    title: "Imminent Lockdown (dark hyrbid scifi trailer)",
+    length: "2:42",
+    src: "/audio/Imminent Lockdown (dark hyrbid scifi trailer).mp3",
   },
   {
     id: 6,
-    style: "Video game",
-    title: "Neon outpost",
-    length: "2:21",
-    src: "/audio/Dark Sci-fi Demo06 - Hugo Figuera.wav",
+    style: "Trailers",
+    title: "Rage rising (horror scifi trailer)",
+    length: "2:51",
+    src: "/audio/ Rage rising (horror scifi trailer).mp3",
   },
 ];
 
@@ -55,7 +53,7 @@ const tracks = [
 const tracksWithIndex = tracks.map((track, index) => ({ ...track, index }));
 
 // order of the 3 sections
-const STYLES = ["Scoring", "Trailers", "Video game"];
+const STYLES = ["Video game", "Scoring", "Trailers"];
 
 const groupedTracks = STYLES.map((style) => ({
   style,
