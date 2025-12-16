@@ -368,9 +368,29 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.78);
-
-
 }
+.hf-availability-text h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.hf-availability-text h3::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin-top: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    rgba(120, 160, 255, 0.6),
+    transparent
+  );
+}
+
 
 .hf-bio-extra {
   max-height: 0;
@@ -383,6 +403,7 @@ body {
     opacity 220ms ease,
     transform 220ms ease,
     visibility 0s linear 360ms;
+    color: #bdb7b7;
 }
 
 .hf-bio-extra.is-open {
@@ -430,6 +451,47 @@ body {
   border-color: rgba(160, 205, 255, 0.9);
   box-shadow: 0 0 12px rgba(60, 130, 230, 0.45);
 }
+/* About links (LinkedIn / SoundCloud) — prevent purple visited */
+.hf-bio-extra .hf-links a,
+.hf-bio-extra .hf-links a:visited {
+  color: #359fdd !important;
+  text-decoration: none;
+}
+
+.hf-bio-extra .hf-links a:hover {
+  color: #87c1d8 !important;
+  text-underline-offset: 3px;
+  
+}
+
+/* =========================
+   AVAILABLE FOR – services
+   ========================= */
+
+.hf-services {
+  list-style: none;
+  margin: 0.75rem 0 1.2rem;
+  padding: 0;
+  position: relative;
+}
+
+/* vertical guide line */
+.hf-services::before {
+  content: "";
+  position: absolute;
+  top: 0.1rem;
+  bottom: 0.1rem;
+  left: 1.4rem; /* <-- PUSHED RIGHT */
+  width: 1px;
+  background: rgba(140, 160, 255, 0.25);
+}
+
+.hf-services li {
+  padding-left: 2.5rem; /* text aligned AFTER the line */
+  margin-bottom: 0.55rem;
+}
+
+
 /* =========================
    CREDITS
 ========================= */
@@ -454,7 +516,7 @@ body {
     rgba(5, 7, 15, 0.96) 60%,
     rgba(5, 7, 15, 1) 100%
   );
-  border: 1px solid rgba(120, 170, 255, 0.18);
+  border: 1px solid rgba(9, 113, 145, 0.479);
    box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(10, 20, 40, 0.6);

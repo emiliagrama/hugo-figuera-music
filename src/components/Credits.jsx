@@ -1,8 +1,6 @@
 import React from "react";
 
 const Credits = () => {
-  // Optional: add links if you want the cards clickable
-  // If you don't want links yet, keep href as null.
   const credits = [
     {
       studio: "Creative Assembly",
@@ -52,7 +50,6 @@ const Credits = () => {
     </article>
   ))}
 </div>
-
 
         <p className="hf-credits-note">
           Additional projects not listed due to confidentiality.

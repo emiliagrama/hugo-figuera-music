@@ -26,7 +26,6 @@ const About = () => {
 
             <div className={"hf-bio-extra" + (expanded ? " is-open" : "")}>
           <ul className="hf-links">
-            <li>
               <a
                 href="https://www.linkedin.com/in/hugo-figuera-85266574/"
                 target="_blank"
@@ -34,7 +33,6 @@ const About = () => {
               >
                 Linkedin
               </a>
-              </li>
               </ul>
              <div className="hf-availability-layout">
 
@@ -63,7 +61,6 @@ const About = () => {
             </p>
           <p>You can explore more of my work as Katharsys here:</p>
           <ul className="hf-links">
-            <li>
               <a
                 href="https://soundcloud.com/katharsys"
                 target="_blank"
@@ -71,7 +68,6 @@ const About = () => {
               >
                 SoundCloud
               </a>
-            </li>
           </ul>
         </div>
 
