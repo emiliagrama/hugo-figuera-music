@@ -3,9 +3,9 @@ import React, { useState } from "react";
 const About = () => {
   const [expanded, setExpanded] = useState(false);
     const bioParagraphs = [
-    "I'm a music composer and sound designer specialized in cinematic and interactive media. With a focus on video games, trailers, and film, I create emotionally driven scores blending orchestral power, dark atmospheres, and hybrid sound design.",
+    "I'm a music composer, specialized in cinematic and interactive media. With a focus on video games, trailers, and film, I create emotionally driven scores blending orchestral power, dark atmospheres, and hybrid sound design.",
     "Whether it’s an epic trailer, a sci-fi narrative, or a high-intensity gameplay moment, I aim to elevate each project’s storytelling and impact through music.",
-    "Recent work includes projects for AAA games, dark fantasy trailers and sci-fi RTS campaigns."
+    "Recent work includes projects for AAA games, epic dark trailers and sci-fi RTS campaigns."
     ];
 
   return (

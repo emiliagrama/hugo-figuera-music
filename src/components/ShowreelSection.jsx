@@ -6,7 +6,7 @@ const tracks = [
   {
     id: 1,
     style: "Video game",
-    title: "Kessler syndrome",
+    title: "Kessler Syndrome",
     length: "1:09",
     src: "/audio/Dark Sci-fi Demo01.mp3",
   },
@@ -43,7 +43,7 @@ const tracks = [
   {
     id: 6,
     style: "Trailers",
-    title: "Rage rising (horror scifi trailer)",
+    title: "Rage Rising (horror scifi trailer)",
     length: "2:51",
     src: "/audio/ Rage rising (horror scifi trailer).mp3",
   },
