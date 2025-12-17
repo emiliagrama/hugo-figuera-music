@@ -31,7 +31,7 @@ const About = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Linkedin
+                LinkedIn
               </a>
               </ul>
              <div className="hf-availability-layout">

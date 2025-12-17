@@ -36,14 +36,14 @@ const tracks = [
   {
     id: 5,
     style: "Trailers",
-    title: "Imminent Lockdown (dark hyrbid scifi trailer)",
+    title: "Imminent Lockdown (dark hyrbid sci-fi trailer)",
     length: "2:42",
     src: "/audio/Imminent Lockdown (dark hyrbid scifi trailer).mp3",
   },
   {
     id: 6,
     style: "Trailers",
-    title: "Rage Rising (horror scifi trailer)",
+    title: "Rage Rising (horror sci-fi trailer)",
     length: "2:51",
     src: "/audio/ Rage rising (horror scifi trailer).mp3",
   },
