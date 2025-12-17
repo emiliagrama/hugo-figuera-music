@@ -479,12 +479,19 @@ body {
 .hf-services::before {
   content: "";
   position: absolute;
-  top: 0.1rem;
-  bottom: 0.1rem;
-  left: 1.4rem; /* <-- PUSHED RIGHT */
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 1.4rem;
   width: 1px;
-  background: rgba(140, 160, 255, 0.25);
+
+  background: linear-gradient(
+    to top,
+    rgba(140, 160, 255, 0.45),
+    rgba(140, 160, 255, 0.25),
+    rgba(140, 160, 255, 0)
+  );
 }
+
 
 .hf-services li {
   padding-left: 2.5rem; /* text aligned AFTER the line */

@@ -88,13 +88,15 @@ const ShowreelSection = () => {
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.35 }
-    );
+  ([entry]) => {
+    setIsVisible(entry.isIntersecting);
+  },
+  {
+    threshold: 0.01,
+    rootMargin: "300px 0px 300px 0px", // triggers before it fully enters view
+  }
+);
+
 
     observer.observe(el);
     return () => observer.disconnect();
