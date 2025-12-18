@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const About = () => {
   const [expanded, setExpanded] = useState(false);
     const bioParagraphs = [
-    "I'm a music composer, specialized in cinematic and interactive media. With a focus on video games, trailers, and film, I create emotionally driven scores blending orchestral power, dark atmospheres, and hybrid sound design.",
+    "I'm a music composer, specialized in cinematic and interactive media. With a focus on video games, trailers, and film, I create emotionally driven scores blending orchestral power, dark atmospheres, and creative sound design.",
     "Whether it’s an epic trailer, a sci-fi narrative, or a high-intensity gameplay moment, I aim to elevate each project’s storytelling and impact through music.",
     "Recent work includes projects for AAA games, epic dark trailers and sci-fi RTS campaigns."
     ];
@@ -42,7 +42,7 @@ const About = () => {
                         <li>Game audio &amp; adaptive music</li>
                         <li>Trailer music (original, remix or hybrid)</li>
                         <li>Film / TV scoring</li>
-                        <li>Music licensing &amp; bespoke sound design</li>
+                        <li>Music licensing &amp; bespoke sound creations</li>
                     </ul>
             </div>
 
@@ -54,22 +54,13 @@ const About = () => {
             </div>
 
             </div>
-                        <p>
-                I also release dark drum &amp; bass under the name{" "}
-                <strong>Katharsys</strong> and perform internationally, with over 20
+                <p>
+                I also release electronic music
+                 and perform internationally, with over 20
                 years of experience in the electronic music scene.
-            </p>
-          <p>You can explore more of my work as Katharsys here:</p>
-          <ul className="hf-links">
-              <a
-                href="https://soundcloud.com/katharsys"
-                target="_blank"
-                rel="noreferrer"
-              >
-                SoundCloud
-              </a>
-          </ul>
-        </div>
+                </p>
+          
+            </div>
 
         <button
           type="button"
