@@ -1,19 +1,20 @@
 import React, { useRef, useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
+import TrackTitle from "./TrackTitle";
 
 const tracks = [ 
   // STYLE 3 – Video game
   {
     id: 1,
     style: "Video game",
-    title: "Kessler Syndrome",
+    title: "Kessler Syndrome | Hybrid Orchestral Sci-Fi (Tense, Dark, Atmospheric)",
     length: "1:09",
     src: "/audio/Dark Sci-fi Demo01.mp3",
   },
   {
     id: 2,
     style: "Video game",
-    title: "Neural Drift",
+    title: "Neural Drift | Hybrid Cinematic Underscore (Dark, Ominous, Tense)",
     length: "1:02",
     src: "/audio/Dark Sci-fi Demo02.mp3",
   },
@@ -21,14 +22,14 @@ const tracks = [
   {
     id: 3,
     style: "Scoring",
-    title: "Faith",
+    title: "Faith | Epic Hybrid Orchestral (Rising, Psychological Tension, Dramatic)",
     length: "2:54",
     src: "/audio/Faith.mp3",
   },
   {
     id: 4,
     style: "Scoring",
-    title: "The Second Sun (dark orchestral polychords)",
+    title: "The Second Sun | Dark Orchestral (Revelation, Cosmic, Tense)",
     length: "0:51",
     src: "/audio/The Second Sun (dark orchestral polychords).mp3",
   },
@@ -36,14 +37,14 @@ const tracks = [
   {
     id: 5,
     style: "Trailers",
-    title: "Imminent Lockdown (dark hyrbid sci-fi trailer)",
+    title: "Imminent Lockdown | Dark Hybrid Sci-Fi (Ominous, Relentless, Rising)",
     length: "2:42",
     src: "/audio/Imminent Lockdown (dark hyrbid scifi trailer).mp3",
   },
   {
     id: 6,
     style: "Trailers",
-    title: "Rage Rising (horror sci-fi trailer)",
+    title: "Rage Rising | Horror Hybrid Orchestral (Menacing, Unstable, Escalating)",
     length: "2:51",
     src: "/audio/ Rage rising (horror scifi trailer).mp3",
   },
@@ -234,7 +235,21 @@ ws.on("error", (error) => {
           </button>
 
           <div className="hf-player-info">
-            <h3>{currentTrack.title}</h3>
+            <h3 className="hf-player-title hf-title-underline-fade">
+  <span className="hf-track-title-main">
+    {currentTrack.title.split("|")[0].trim()}
+  </span>
+
+  {currentTrack.title.includes("|") && (
+    <>
+      <span className="hf-track-title-pipe"> | </span>
+      <span className="hf-track-title-rest">
+        {currentTrack.title.split("|").slice(1).join("|").trim()}
+      </span>
+    </>
+  )}
+</h3>
+
             <p className="hf-player-style">{currentTrack.style}</p>
           </div>
 
@@ -266,8 +281,20 @@ ws.on("error", (error) => {
                       onClick={() => handleSelectTrack(track.index)}
                     >
                       <span className="hf-style-track-title">
-                        {track.title}
-                      </span>
+  <span className="hf-track-title-main">
+    {track.title.split("|")[0].trim()}
+  </span>
+
+  {track.title.includes("|") && (
+    <>
+      <span className="hf-track-title-pipe"> | </span>
+      <span className="hf-track-title-rest">
+        {track.title.split("|").slice(1).join("|").trim()}
+      </span>
+    </>
+  )}
+</span>
+
                       <span className="hf-style-track-length">
                         {track.length}
                       </span>

@@ -1013,6 +1013,12 @@ body {
   font-weight: 100;
   letter-spacing: 0.06em;      /* a little spacing, but less than labels */
   color: rgba(210, 211, 214, 0.9);
+  
+}
+.hf-player-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hf-style-track-length {
@@ -1021,7 +1027,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.8;
-  color: rgba(201, 202, 206, 0.9);
+  color: rgba(86, 175, 211, 0.9);
 }
 
 /* -----------------------------------
@@ -1096,6 +1102,22 @@ body {
     height: 80vh;
   }
 }
+@media (max-width: 1028px){
+  .hf-player-title{
+    white-space: normal;          /* allow wrapping */
+    
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;        /* max 2 lines */
+    overflow: hidden;
+
+    line-height: 1.25;
+    min-height: calc(1.25em * 2); /* reserve space → no jumping */
+
+    font-size: 0.9rem;            /* optional, tweak to taste */
+  }
+}
+
 /* Center the showreel player perfectly on small screens */
 @media (max-width: 640px) {
   #showreel .hf-section-shell {
@@ -1171,7 +1193,77 @@ body {
   }
 }
 
+.hf-track-title-main{
+  font-weight: 650;
+  opacity: 0.95;
+}
+
+.hf-track-title-pipe{
+  color: rgba(18, 93, 112, 0.699);
+  text-shadow: 0 0 12px rgba(90, 160, 255, 0.25);
+}
+
+.hf-track-title-rest{
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* fading underline (same idea as About section) */
+.hf-title-underline-fade{
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
 
 
+/* soften pipe ONLY inside track cards */
+.hf-style-track-title .hf-track-title-pipe{
+  color: rgba(140, 190, 255, 0.75);   /* slightly dimmer */
+  text-shadow: 0 0 6px rgba(90, 160, 255, 0.15);
+}
+.hf-style-track-title .hf-track-title-rest{
+  opacity: 0.75; /* slightly closer to title */
+}
+
+/* Cards/list rows: restore the old lighter look */
+.hf-style-track-title .hf-track-title-main{
+  font-weight: 500;   /* or 450/400 depending on your font */
+  opacity: 0.9;
+}
+
+/* Cards: keep the right side close to the old look too */
+.hf-style-track-title .hf-track-title-rest{
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+/* Optional: soften the pipe in cards */
+.hf-style-track-title .hf-track-title-pipe{
+  color: rgba(140, 190, 255, 0.75);
+  text-shadow: 0 0 6px rgba(90, 160, 255, 0.12);
+}
+
+/* Tablet portrait-ish widths: iPad Air / iPad Pro 11" */
+@media (min-width: 800px) and (max-width: 1100px) {
+
+  /* global reading comfort */
+  body { font-size: 16px; } /* or 17px if you like */
+
+  /* the ALL CAPS headings / labels need help on tablets */
+  .hf-player-title,
+  .hf-style-title,
+  .hf-style-track-title,
+  .hf-player-style {
+    letter-spacing: 0.06em; /* reduce if it was 0.08–0.12 */
+  }
+
+  /* make the showreel text easier to scan */
+  .hf-player-title { font-size: 1.05rem; line-height: 1.25; }
+  .hf-style-track-title { font-size: 0.95rem; line-height: 1.35; }
+
+  /* less “ghost text” on tablet */
+  .hf-track-title-rest { opacity: 0.78; }
+  .hf-player-style { opacity: 0.78; }
+}
 
 
