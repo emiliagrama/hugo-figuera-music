@@ -32,6 +32,9 @@ const Footer = () => {
         </a>
 
       </div>
+      <div className="footer-legal">
+      © 2025 Hugo Figuera. All music registered with ASCAP. All rights reserved. Unauthorized use is strictly prohibited.
+    </div>
     </footer>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const subtitleText =
-  "Orchestral power, dark atmospheres and hybrid sound design crafted for immersive worlds.";
+  "Orchestral power, dark atmospheres and hybrid scoring crafted for immersive worlds";
 
 const Hero = () => {
 

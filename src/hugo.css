@@ -1059,7 +1059,10 @@ body {
   margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
 }
 
-
+.footer-legal {
+  font-variant: all-small-caps;
+   font-weight: 100;
+}
 
 /* Mobile: keep it clean (stack) */
 @media (max-width: 420px) {
