@@ -21,8 +21,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 5vw;
-  background: #000 url("/images/hugo-studio-placeholder.jpg") center / cover
-    no-repeat;
+  background: #000 ;
+  
 }
 
 .hf-hero-overlay {
