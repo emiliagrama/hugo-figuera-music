@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
-import TrackTitle from "./TrackTitle";
+
 
 const tracks = [ 
   // STYLE 3 – Video game
@@ -98,7 +98,6 @@ const ShowreelSection = () => {
   }
 );
 
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
@@ -130,7 +129,6 @@ progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
   
 });
 
-
     waveSurferRef.current = ws;
 ws.on("error", (error) => {
   if (error?.name === "AbortError") return; // ignore fetch aborts (normal)
@@ -146,7 +144,6 @@ ws.on("error", (error) => {
     autoplayRef.current = false;
   }
 });
-
 
     ws.on("timeupdate", (time) => {
       setCurrentTime(time || 0);
@@ -236,19 +233,19 @@ ws.on("error", (error) => {
 
           <div className="hf-player-info">
             <h3 className="hf-player-title hf-title-underline-fade">
-  <span className="hf-track-title-main">
-    {currentTrack.title.split("|")[0].trim()}
-  </span>
+              <span className="hf-track-title-main">
+                {currentTrack.title.split("|")[0].trim()}
+              </span>
 
-  {currentTrack.title.includes("|") && (
-    <>
-      <span className="hf-track-title-pipe"> | </span>
-      <span className="hf-track-title-rest">
-        {currentTrack.title.split("|").slice(1).join("|").trim()}
-      </span>
-    </>
-  )}
-</h3>
+              {currentTrack.title.includes("|") && (
+                <>
+                  <span className="hf-track-title-pipe"> | </span>
+                  <span className="hf-track-title-rest">
+                    {currentTrack.title.split("|").slice(1).join("|").trim()}
+                  </span>
+                </>
+              )}
+            </h3>
 
             <p className="hf-player-style">{currentTrack.style}</p>
           </div>
@@ -281,19 +278,19 @@ ws.on("error", (error) => {
                       onClick={() => handleSelectTrack(track.index)}
                     >
                       <span className="hf-style-track-title">
-  <span className="hf-track-title-main">
-    {track.title.split("|")[0].trim()}
-  </span>
+                      <span className="hf-track-title-main">
+                        {track.title.split("|")[0].trim()}
+                      </span>
 
-  {track.title.includes("|") && (
-    <>
-      <span className="hf-track-title-pipe"> | </span>
-      <span className="hf-track-title-rest">
-        {track.title.split("|").slice(1).join("|").trim()}
-      </span>
-    </>
-  )}
-</span>
+                      {track.title.includes("|") && (
+                        <>
+                          <span className="hf-track-title-pipe"> | </span>
+                          <span className="hf-track-title-rest">
+                            {track.title.split("|").slice(1).join("|").trim()}
+                          </span>
+                        </>
+                      )}
+                      </span>
 
                       <span className="hf-style-track-length">
                         {track.length}
