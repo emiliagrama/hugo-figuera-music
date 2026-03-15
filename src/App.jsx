@@ -10,9 +10,9 @@ function App() {
       <Hero />
 
       <main className="hf-main-band">
-        <About />
-        <Credits />
         <ShowreelSection />
+        <Credits />
+        <About />
       </main>
 
       <Footer />

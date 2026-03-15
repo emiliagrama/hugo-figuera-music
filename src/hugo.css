@@ -16,11 +16,10 @@ body {
 /* Hero wrapper */
 .hf-hero {
   position: relative;
-  height: 90vh;
+  height: 110vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5vw;
   background: #000;
 }
 
@@ -54,23 +53,25 @@ body {
 
 .hf-hero-content {
   position: relative;
-  max-width: 780px;
+  width: min(900px, 100%);
+  margin: 0 auto;
   text-align: center;
+  transform: translateY(-60px);
 }
 
 /* Tagline + title + subtitle */
 .hf-hero-tagline {
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-size: 1rem;
+  font-size: 1.1rem;
   opacity: 0.8;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .hf-hero h1 {
   text-transform: uppercase;
-  font-size: clamp(3.2rem, 5vw, 3.8rem);
-  letter-spacing: 0.22em;
+  font-size: clamp(4.6rem, 5vw, 4.8rem);
+  letter-spacing: 0.16em;
   font-weight: 400;
   color: #f1f5ff;
   text-shadow: 0 0 10px rgba(110, 170, 255, 0.65);
@@ -80,7 +81,7 @@ body {
 .hf-hero-subtitle {
   margin-top: 0.9rem;
   max-width: 800px;
-  font-size: 0.92rem;
+  font-size: 0.99rem;
   font-weight: 300;
   letter-spacing: 0.11rem;
   line-height: 1.55;
@@ -141,108 +142,184 @@ body {
 
 
 /* ============ CTA BUTTON ============ */
-.hf-btn-border {
-  display: inline-block;
-  padding: 2px;               /* thickness of border */
-  border-radius: 12px;
-  background: linear-gradient(
-    120deg,
-    #071625,
-    #45b2ff,
-    #071625
-  );
-  background-size: 260% 260%;
-  animation: hf-border-flow 4s linear infinite;
-}
 
-.hf-btn-primary {
+.hf-audio-button {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.9rem 2.6rem;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #143168 0%, #195883 100%);
-  color: #e8ecf9;
-  font-size: 0.9rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 600;
+  min-width: 300px;
+  min-height: 20px;
+  padding: 18px 34px;
+  border: 1px solid #1e466e;
+  border-radius: 10px;
+  background: #02050b;
+  color: #dff1ff;
   text-decoration: none;
-  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.92rem;
+  font-weight: 700;
   overflow: hidden;
- box-shadow:
-    0 0 1px rgba(0, 0, 0, 0.55),
-    0 6px 20px rgba(40, 110, 210, 0.12),
-    0 12px 32px rgba(40, 110, 210, 0.06);
+  cursor: pointer;
+  isolation: isolate;
+
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+
+  box-shadow:
+    0 0 8px rgba(58,111,165,0.45),
+    0 0 22px rgba(58,111,165,0.25),
+    inset 0 0 10px rgba(58,111,165,0.15);
 }
 
-/* moving light streak */
-.hf-btn-primary::before {
-  content: "";
+/* text */
+
+.hf-audio-button__label {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+}
+
+/* glow background */
+
+.hf-audio-button__glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(60, 120, 255, 0.10) 35%,
-    rgba(60, 120, 255, 0.35) 50%,
-    rgba(60, 120, 255, 0.10) 65%,
-    transparent 100%
-  );
-  transform: translateX(-130%);
-  opacity: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at center, rgba(47, 143, 255, 0.18) 0%, transparent 68%);
+  opacity: 0.85;
+  animation: hfButtonPulse 2.8s ease-in-out infinite;
+}
+
+/* waveform container */
+
+.hf-audio-button__waves {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  opacity: 0.38;
   pointer-events: none;
 }
 
-.hf-btn-primary:hover {
+/* waveform bars */
+
+.hf-audio-button__waves .bar {
+  width: 3px;
+  border-radius: 999px;
+  background: #3a83a5;
+
   box-shadow:
-    0 0 8px rgba(40, 110, 210, 0.12),
-    0 0 16px rgba(40, 110, 210, 0.08);
+    0 0 4px rgba(58,111,165,0.6),
+    0 0 10px rgba(58,111,165,0.3);
+
+  animation: hfWaveBars 1.2s ease-in-out infinite;
 }
 
-.hf-btn-primary:hover::before {
-  opacity: 1;
-  animation: hf-btn-softscan 1.8s ease-out forwards;
+.hf-audio-button__waves .bar-1 { height: 14px; animation-delay: 0s; }
+.hf-audio-button__waves .bar-2 { height: 28px; animation-delay: 0.08s; }
+.hf-audio-button__waves .bar-3 { height: 18px; animation-delay: 0.16s; }
+.hf-audio-button__waves .bar-4 { height: 34px; animation-delay: 0.24s; }
+.hf-audio-button__waves .bar-5 { height: 26px; animation-delay: 0.32s; }
+.hf-audio-button__waves .bar-6 { height: 38px; animation-delay: 0.4s; }
+.hf-audio-button__waves .bar-7 { height: 20px; animation-delay: 0.48s; }
+.hf-audio-button__waves .bar-8 { height: 24px; animation-delay: 0.56s; }
+.hf-audio-button__waves .bar-9 { height: 12px; animation-delay: 0.64s; }
+
+/* hover */
+
+.hf-audio-button:hover {
+  color: #ffffff;
+  border-color: #4b86c4;
+
+  box-shadow:
+    0 0 10px rgba(75, 168, 196, 0.7),
+    0 0 20px rgba(102, 164, 214, 0.45),
+    0 0 50px rgba(75,134,196,0.25),
+    inset 0 0 12px rgba(75, 134, 196, 0.103);
+
+  animation: bassVibration 0.18s infinite;
 }
 
-/* play-icon triangle */
-.hf-btn-primary-icon {
-  width: 0;
-  height: 0;
-  border-left: 9px solid currentColor;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  opacity: 0.9;
-  margin-bottom: -1px; /* optical alignment */
+.hf-audio-button:hover .hf-audio-button__waves {
+  opacity: 0.95;
 }
 
-.hf-btn-primary span {
-  letter-spacing: 0.15em;
-  font-weight: 600;
+.hf-audio-button:hover .hf-audio-button__waves .bar {
+  animation-duration: 0.72s;
 }
 
-/* ============ ANIMATIONS ============ */
-@keyframes hf-border-flow {
-  0% {
-    background-position: 0% 50%;
+/* bass vibration */
+
+@keyframes bassVibration {
+  0%   { transform: translate(0,0) scale(1.03); }
+  20%  { transform: translate(-1px,1px) scale(1.03); }
+  40%  { transform: translate(1px,-1px) scale(1.03); }
+  60%  { transform: translate(-1px,-1px) scale(1.03); }
+  80%  { transform: translate(1px,1px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1.03); }
+}
+
+/* wave animation */
+
+@keyframes hfWaveBars {
+  0%,100% {
+    transform: scaleY(0.55);
+    opacity: 0.45;
   }
   50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+    transform: scaleY(1.35);
+    opacity: 1;
   }
 }
 
-@keyframes hf-btn-softscan {
-  0% {
-    transform: translateX(-150%);
+/* glow pulse */
+
+@keyframes hfButtonPulse {
+  0%,100% {
+    transform: scale(0.95);
+    opacity: 0.6;
   }
-  100% {
-    transform: translateX(150%);
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* mobile */
+
+@media (max-width: 640px) {
+  .hf-audio-button {
+    min-width: 260px;
+    min-height: 56px;
+    padding: 16px 22px;
+    font-size: 0.78rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hf-audio-button__waves {
+    gap: 5px;
+  }
+
+  .hf-audio-button__waves .bar {
+    width: 3px;
+  }
+}
+
+/* reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .hf-audio-button,
+  .hf-audio-button * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -263,7 +340,7 @@ body {
   text-transform: uppercase;              
   letter-spacing: 0.28em;                 
   font-weight: 500;                       
-  color: rgba(255, 255, 255, 0.65);       
+  color: rgba(255, 255, 255, 0.836);       
 }
 
 /* Thin glowing line under titles */
@@ -688,7 +765,7 @@ body {
   border-radius: 26px;
   background: radial-gradient(
       circle at top,
-      rgba(20, 32, 80, 0.35) 0%,
+      rgba(4, 7, 17, 0.541) 0%,
       rgba(5, 7, 15, 0.98) 55%,
       rgba(5, 7, 15, 1) 100%
     );
@@ -805,7 +882,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.15em;         /* give it that spaced, showreel vibe */
   text-transform: uppercase;      /* optional: comment this out if you prefer “Noir tension” case */
-  color: #81838a;
+  color: #eff0f3cb;
   margin: 0 0 0.15;
   margin-top: 10;
 }
@@ -839,7 +916,7 @@ body {
   font-size: 0.75rem;
   opacity: 0.72;
   margin-bottom: 0.35rem;
-  color: rgba(202, 202, 207, 0.87);
+  color: rgba(202, 202, 207, 0.932);
 }
 
 .hf-progress-track {
@@ -1011,7 +1088,7 @@ body {
   font-size: 0.9rem;
   font-weight: 100;
   letter-spacing: 0.06em;      /* a little spacing, but less than labels */
-  color: rgba(210, 211, 214, 0.9);
+  color: rgba(240, 240, 241, 0.959);
   
 }
 .hf-player-title{
@@ -1043,10 +1120,10 @@ body {
   display: block;
   margin-top: 0.8rem;
   margin-bottom: 0.5rem;
-  color: #8eb5e9;
-  font-weight: 200;
+  color: #19b0ca;
+  font-weight: 400;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 /* NEW: align email + button nicely without changing your email block spacing */
 .hf-footer-contact {
@@ -1098,7 +1175,7 @@ body {
 
 @media (max-width: 640px) {
   .hf-hero {
-    height: 80vh;
+    height: 100vh;
   }
 }
 @media (max-width: 1028px){

@@ -5,11 +5,6 @@ const subtitleText =
 
 const Hero = () => {
 
-  const scrollToShowreel = () => {
-    const el = document.getElementById("showreel");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   // ⭐ This prevents the flashing of the first words
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -65,16 +60,33 @@ const Hero = () => {
           })()}
         </p>
 
-        <div className="hf-btn-border">
-          <button
-            type="button"
-            className="hf-btn-primary"
-            onClick={scrollToShowreel}
-          >
-            <span className="hf-btn-primary-icon" />
-            <span>Listen to the showreel</span>
-          </button>
-        </div>
+<a
+  href="#showreel"
+  className="hf-audio-button"
+  onClick={(e) => {
+    e.preventDefault();
+    document.getElementById("showreel")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+>
+  <span className="hf-audio-button__glow"></span>
+
+  <span className="hf-audio-button__waves" aria-hidden="true">
+    <span className="bar bar-1"></span>
+    <span className="bar bar-2"></span>
+    <span className="bar bar-3"></span>
+    <span className="bar bar-4"></span>
+    <span className="bar bar-5"></span>
+    <span className="bar bar-6"></span>
+    <span className="bar bar-7"></span>
+    <span className="bar bar-8"></span>
+    <span className="bar bar-9"></span>
+  </span>
+
+  <span className="hf-audio-button__label">Listen to the showreel</span>
+</a>
       </div>
     </header>
   );
