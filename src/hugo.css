@@ -1112,14 +1112,14 @@ body {
 
 .hf-footer {
   text-align: center;
-  padding: 0.1rem 0.5rem 2rem;
+  padding: 0.1rem 0.3rem 2rem;
   font-size: 1rem;
   opacity: 0.65;
 }
 .hf-footer-email {
   display: block;
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
   color: #19b0ca;
   font-weight: 400;
   text-decoration: none;
@@ -1131,8 +1131,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin-top: 0.8rem; /* matches your current .hf-footer-email margin-top */
-  margin-bottom: 0.9rem;
+  margin-top: 0.5rem; /* matches your current .hf-footer-email margin-top */
+  margin-bottom: 0.7rem;
+}
+.hf-footer-contact :hover{
+  color: #666e75;
 }
 
 /* Your link is currently display:block + margin-top; inside flex it should be inline */
@@ -1341,5 +1344,22 @@ body {
   .hf-track-title-rest { opacity: 0.78; }
   .hf-player-style { opacity: 0.78; }
 }
+.footer-credit {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  text-align: center;
+   letter-spacing: 0.05em;
+}
 
+.footer-credit a {
+  color: rgba(239, 241, 245, 0.911);
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color 0.25s ease;
+}
+
+.footer-credit a:hover {
+  color: rgba(130, 215, 236, 0.9);
+}
 

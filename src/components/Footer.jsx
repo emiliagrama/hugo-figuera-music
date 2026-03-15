@@ -1,40 +1,31 @@
-import { useState } from "react";
-
 const Footer = () => {
-  const email = "contact@hugof igueramusic.com".replace(" ", ""); // or just "contact@hugofigueramusic.com"
-  const gmailCompose = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}`;
-
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
-    } catch {
-      window.prompt("Copy this email:", email);
-    }
-  };
 
   return (
     <footer className="hf-footer">
       <p>Available for freelance and long-term collaborations.</p>
 
-      {/* NEW wrapper (doesn't change your email styling) */}
       <div className="hf-footer-contact">
         <a
           className="hf-footer-email"
-          href={gmailCompose}
+          href="mailto:contact@hugofigueramusic.com?subject=Music%20Collaboration"
+        >
+          contact@hugofigueramusic.com
+        </a>
+      </div>
+
+      <div className="footer-legal">
+        © 2025 Hugo Figuera. All music registered with ASCAP. All rights reserved.
+      </div>
+
+      <div className="footer-credit">
+        <a
+          href="https://emiliagrama.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {email}
+          Site by Emilia Grama
         </a>
-
       </div>
-      <div className="footer-legal">
-      © 2025 Hugo Figuera. All music registered with ASCAP. All rights reserved. Unauthorized use is strictly prohibited.
-    </div>
     </footer>
   );
 };
