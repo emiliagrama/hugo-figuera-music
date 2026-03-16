@@ -23,7 +23,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Site by Emilia Grama
+          Website by Emilia Grama
         </a>
       </div>
     </footer>

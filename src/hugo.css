@@ -1028,7 +1028,7 @@ body {
   text-align: center;
   padding: 0.1rem 0.3rem 2rem;
   font-size: 1rem;
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 .hf-footer-email {
@@ -1050,24 +1050,19 @@ body {
   margin-bottom: 0.7rem;
 }
 
-.hf-footer-contact:hover{
-  color: #666e75;
+.hf-footer-email:hover{
+  color: rgb(22, 149, 223);
 }
 
 .hf-footer-contact .hf-footer-email {
   display: inline-block;
-  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
+  margin-top: 0; 
+
 }
 
 .footer-legal {
   font-variant: all-small-caps;
   font-weight: 100;
-}
-
-.footer-credit {
-  margin-top: 0.45rem;
-  font-size: 0.85rem;
-  opacity: 0.75;
 }
 
 .footer-credit a {
