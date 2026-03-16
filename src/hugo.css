@@ -1,4 +1,4 @@
-/* in index.css / App.css / global.css */
+
 html,
 body {
   margin: 0;
@@ -45,9 +45,7 @@ body {
       rgba(19, 16, 61, 0.18) 28%,
       transparent 45%
     ),
-    /* Base dark gradient */
     linear-gradient(to bottom, #02030a, #020209);
-
   background-repeat: no-repeat;
 }
 
@@ -77,6 +75,7 @@ body {
   text-shadow: 0 0 10px rgba(110, 170, 255, 0.65);
   margin-bottom: 3rem;
 }
+
 /* Base subtitle style – NO animation here */
 .hf-hero-subtitle {
   margin-top: 0.9rem;
@@ -90,8 +89,6 @@ body {
   margin-bottom: 5rem;
   margin-left: auto;
   margin-right: auto;
-
-  /* important: make sure there is NO animation on the whole subtitle */
   animation: none;
 }
 
@@ -99,11 +96,9 @@ body {
 .hf-hero-subletter {
   display: inline-block;
   opacity: 0;
-  transform: translateY(4px);   /* subtle lift */
-  filter: blur(2px);            /* softer blur */
+  transform: translateY(4px); 
+  filter: blur(2px);            
   will-change: transform, opacity, filter;
-
-  /* letters animate individually, delay is set inline from React */
   animation: hf-hero-subletter-in 0.38s ease-out forwards;
 }
 
@@ -137,9 +132,13 @@ body {
     font-size: 0.85rem;
     letter-spacing: 0.06rem;
     margin-bottom: 3.5rem;
+    padding: 1.5px;
   }
+.hf-hero h1{
+  font-size: 70px;
+  letter-spacing: 0.50rem;
 }
-
+}
 
 /* ============ CTA BUTTON ============ */
 
@@ -297,8 +296,8 @@ body {
 
 @media (max-width: 640px) {
   .hf-audio-button {
-    min-width: 260px;
-    min-height: 56px;
+    min-width: 220px;
+    min-height: 26px;
     padding: 16px 22px;
     font-size: 0.78rem;
     letter-spacing: 0.13em;
@@ -323,11 +322,8 @@ body {
   }
 }
 
-/* -----------------------------------
-   SECTION TITLES  (ABOUT / SHOWREEL)
------------------------------------ */
+/* ============ SECTION TITLES ============ */
 
-/* Wrapper + typography for ABOUT / SHOWREEL titles */
 .hf-section-title {
   text-align: center;
   margin-bottom: 2rem;
@@ -367,16 +363,12 @@ body {
   100% { opacity: 0.55; transform: scaleX(0.95); }
 }
 
-/* -----------------------------------
-   SECTION WRAPPERS (ABOUT + SHOWREEL)
------------------------------------ */
+/* ============ ABOUT ============ */
 
-.hf-bio,
-.hf-showreel {
+.hf-bio {
   padding: 4rem 1.5rem;
 }
 
-/* Glowing panel that keeps content tight on large screens */
 .hf-section-shell {
   max-width: 980px;
   margin: 0 auto;
@@ -393,51 +385,6 @@ body {
     0 32px 70px rgba(0, 0, 0, 0.9),
     0 0 25px rgba(10, 80, 200, 0.24);
 }
-/* Availability + photo layout */
-.hf-availability-layout {
-  display: grid;
-  grid-template-columns: 1fr 310px;
-  gap: 2.5rem;
-  align-items: start;
-  margin-top: 1rem;
-}
-
-.hf-availability-photo {
-  display: flex;
-  justify-content: center;
-}
-
-.hf-availability-photo img {
-  width: 180px;
-  aspect-ratio: 1 / 1;
-  border-radius: 10%;
-  object-fit: cover;
-  opacity: 0.7;
-  box-shadow:
-    0 0 35px rgba(60, 120, 255, 0.25),
-    inset 0 0 0 1px rgba(140, 180, 255, 0.25);
-
-}
-
-
-/* Mobile: photo moves above text */
-@media (max-width: 900px) {
-  .hf-availability-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hf-availability-photo {
-    order: -1;
-  }
-
-  .hf-availability-photo img {
-    width: 150px;
-  }
-}
-
-/* -----------------------------------
-   BIO "READ MORE" BLOCK
------------------------------------ */
 
 .hf-bio-intro {
   font-size: 1.05rem;
@@ -445,28 +392,6 @@ body {
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.78);
 }
-.hf-availability-text h3 {
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  position: relative;
-  margin-bottom: 1.2rem;
-}
-
-.hf-availability-text h3::after {
-  content: "";
-  display: block;
-  width: 36px;
-  height: 1px;
-  margin-top: 0.5rem;
-  background: linear-gradient(
-    90deg,
-    rgba(120, 160, 255, 0.6),
-    transparent
-  );
-}
-
 
 .hf-bio-extra {
   max-height: 0;
@@ -479,7 +404,7 @@ body {
     opacity 220ms ease,
     transform 220ms ease,
     visibility 0s linear 360ms;
-    color: #bdb7b7;
+  color: #bdb7b7;
 }
 
 .hf-bio-extra.is-open {
@@ -501,8 +426,6 @@ body {
 .hf-bio-intro:last-child {
   margin-bottom: 1.5rem;
 }
-
-/* "Read more" / "Read less" button under the bio */
 
 .hf-link-button {
   margin-top: 1.4rem;
@@ -527,7 +450,7 @@ body {
   border-color: rgba(160, 205, 255, 0.9);
   box-shadow: 0 0 12px rgba(60, 130, 230, 0.45);
 }
-/* About links (LinkedIn / SoundCloud) — prevent purple visited */
+
 .hf-bio-extra .hf-links a,
 .hf-bio-extra .hf-links a:visited {
   color: #359fdd !important;
@@ -537,12 +460,67 @@ body {
 .hf-bio-extra .hf-links a:hover {
   color: #87c1d8 !important;
   text-underline-offset: 3px;
-  
 }
 
-/* =========================
-   AVAILABLE FOR – services
-   ========================= */
+.hf-availability-layout {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.hf-availability-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.hf-availability-photo img {
+  width: 180px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10%;
+  object-fit: cover;
+  opacity: 0.7;
+  box-shadow:
+    0 0 35px rgba(60, 120, 255, 0.25),
+    inset 0 0 0 1px rgba(140, 180, 255, 0.25);
+}
+
+@media (max-width: 900px) {
+  .hf-availability-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hf-availability-photo {
+    order: -1;
+  }
+
+  .hf-availability-photo img {
+    width: 150px;
+  }
+}
+
+.hf-availability-text h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.hf-availability-text h3::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin-top: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    rgba(120, 160, 255, 0.6),
+    transparent
+  );
+}
 
 .hf-services {
   list-style: none;
@@ -551,7 +529,6 @@ body {
   position: relative;
 }
 
-/* vertical guide line */
 .hf-services::before {
   content: "";
   position: absolute;
@@ -559,7 +536,6 @@ body {
   bottom: 0.25rem;
   left: 1.4rem;
   width: 1px;
-
   background: linear-gradient(
     to top,
     rgba(140, 160, 255, 0.45),
@@ -568,16 +544,13 @@ body {
   );
 }
 
-
 .hf-services li {
   padding-left: 2.5rem; /* text aligned AFTER the line */
   margin-bottom: 0.55rem;
 }
 
+/* ============ CREDITS ============ */
 
-/* =========================
-   CREDITS
-========================= */
 .hf-credits {
   padding: 4.8rem 0 2.8rem; /* tiny lift in spacing */
   position: relative;
@@ -600,7 +573,7 @@ body {
     rgba(5, 7, 15, 1) 100%
   );
   border: 1px solid rgba(9, 113, 145, 0.479);
-   box-shadow:
+  box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(10, 20, 40, 0.6);
   transition: transform 180ms ease, border-color 180ms ease;
@@ -664,6 +637,7 @@ body {
   font-size: 0.9rem;
   opacity: 0.6;
 }
+
 .hf-credit-link {
   margin-top: 0.45rem;
   font-size: 0.85rem;
@@ -682,19 +656,17 @@ body {
   border-bottom-color: rgba(120, 170, 255, 0.6);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .hf-credits-grid {
     grid-template-columns: 1fr;
   }
 }
-/* Keep Credits contained like About */
+
 .hf-credits .hf-section-shell {
   max-width: 980px;
   margin: 0 auto;
 }
 
-/* Mobile/tablet: give side padding so it never touches the edges */
 @media (max-width: 900px) {
   .hf-credits {
     padding-left: 1.1rem;
@@ -707,25 +679,14 @@ body {
   }
 }
 
+/* ============ SHOWREEL ============ */
 
-/* =========================================
-   SHOWREEL – HUGO FIGUERA
-   (main player + background + 3 style blocks)
-========================================= */
-
-/* Overall Showreel section */
 .hf-player {
   max-width: 1040px;
   margin: 0 auto 4rem;
   padding: 4rem 1.5rem 0;
 }
 
-/* Title area inside Showreel */
-.hf-player .hf-section-title {
-  margin-bottom: 1.2rem;
-}
-
-/* Subtitle text under SHOWREEL */
 .hf-player-text {
   font-size: 1rem;
   opacity: 0.68;
@@ -734,7 +695,6 @@ body {
   text-align: center;
 }
 
-/* Background photo behind the glass deck */
 .hf-showreel-bg {
   margin-top: 2.5rem;
   padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
@@ -758,7 +718,6 @@ body {
   }
 }
 
-/* Glass console deck that wraps main player + style groups */
 .hf-player-deck {
   margin: 0 auto;
   padding: 1.9rem 2.1rem 2.1rem;
@@ -775,7 +734,6 @@ body {
     0 0 22px rgba(40, 120, 220, 0.25);
 }
 
-/* Entrance animation – “coming out of the screen” */
 .hf-player-anim {
   opacity: 0;
   transform: scale(0.85) translateY(24px);
@@ -803,11 +761,6 @@ body {
   }
 }
 
-/* -----------------------------------
-   MAIN PLAYER (top of deck)
------------------------------------ */
-
-/* Play / pause button */
 .hf-player-play {
   width: 56px;
   height: 56px;
@@ -823,30 +776,29 @@ body {
   font-size: 1.4rem;
   color: rgba(49, 119, 146, 0.767);
 
-  
-   cursor: pointer;
+  cursor: pointer;
   transition: all 0.28s ease;
 }
 
 .hf-player-play:hover {
-  background: rgba(80,120,180,0.25);            /* brighter blue on hover */
-  border-color: rgba(120,160,220,0.45);         /* sharpens the edge */
+  background: rgba(80,120,180,0.25);            
+  border-color: rgba(120,160,220,0.45);         
   box-shadow: 
-    0 0 16px rgba(60,130,220,0.35),             /* more glow */
-    0 0 32px rgba(60,130,220,0.20);             /* outer halo */
+    0 0 16px rgba(60,130,220,0.35),             
+    0 0 32px rgba(60,130,220,0.20);            
   transform: scale(1.04);                        /* tiny lift */
 }
 
 .hf-player-play.is-playing {
-  /* keep the dark sci-fi look, just a bit stronger than hover */
-  background: rgba(41, 99, 165, 0.3);          /* brighter blue than idle */
-  border-color: rgba(42, 91, 155, 0.7);       /* stronger edge */
+  background: rgba(41, 99, 165, 0.3);          
+  border-color: rgba(42, 91, 155, 0.7);     
   box-shadow:
-    0 0 20px rgba(43, 99, 172, 0.55),           /* main glow */
-    0 0 40px rgba(25, 64, 114, 0.28);           /* outer halo */
+    0 0 20px rgba(43, 99, 172, 0.55),          
+    0 0 40px rgba(25, 64, 114, 0.28);          
 
-  transform: scale(1.03);                        /* tiny “energised” bump */
+  transform: scale(1.03);                       
 }
+
 .hf-player-play.is-playing .hf-icon {
   width: 16px;
   height: 16px;
@@ -873,9 +825,6 @@ body {
   right: 0;
 }
 
-
-/* Track info (title + style) */
-/* Main track name inside the player */
 .hf-player-info h3 {
   font-family: inherit;           /* same as SHOWREEL */
   font-size: 1.1rem;
@@ -886,7 +835,6 @@ body {
   margin: 0 0 0.15;
   margin-top: 10;
 }
-
 
 .hf-player-info p {
   margin: 0 0 0.6rem;
@@ -903,8 +851,6 @@ body {
   color: rgba(238, 238, 243, 0.87);
 }
 
-
-/* Progress bar under the main player */
 .hf-player-progress {
   margin-top: 1.5rem;
 }
@@ -948,10 +894,6 @@ body {
   pointer-events: none; /* clicks go to the track */
 }
 
-/* -----------------------------------
-   STYLE GROUPS (Scoring / Trailers / Video game)
------------------------------------ */
-
 .hf-style-groups {
   margin-top: 1.8rem;
   display: grid;
@@ -959,7 +901,6 @@ body {
   gap: 1.1rem;
 }
 
-/* Style card */
 .hf-style-group {
   padding: 0.9rem 1rem 0.8rem;
   border-radius: 18px;
@@ -974,7 +915,6 @@ body {
     0 0 0 1px rgba(2, 5, 18, 0.75);
 }
 
-/* Header inside each style card */
 .hf-style-header {
   display: flex;
   flex-direction: column;
@@ -992,52 +932,6 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* WaveSurfer container for the style bar */
-.hf-style-wave {
-  height: 24px;
-  border-radius: 999px;
-  overflow: hidden;
-  background: transparent;
-  position: relative;
-}
-
-/* Make sure the canvas fills the strip */
-.hf-style-wave canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-  
-}
-.hf-progress-wave {
-  width: 100%;
-  height: 80px;            /* match JS height */
-  padding: 20px 0;         /* squeeze waveform vertically */
-  position: relative;
-  overflow: hidden;        /* hide edges of the canvas */
-  border-radius: 999px;    /* soft pill shape for the whole bar */
-}
-
-/* optional: a faint center line, like in your reference */
-.hf-progress-wave::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-/* make the actual canvas take full width */
-.hf-progress-wave canvas {
-  width: 100% !important;
-  height: 100% !important;
-  
-}
-
-/* Track list inside each style */
 .hf-style-tracklist {
   list-style: none;
   margin: 0;
@@ -1061,15 +955,12 @@ body {
   margin-top: 0.12rem;
 }
 
-/* Hover state */
 .hf-style-track:hover {
   background: radial-gradient(circle at left, rgba(65, 110, 225, 0.35), transparent 60%);
   box-shadow: 0 0 0 1px rgba(80, 125, 240, 0.4);
   transform: translateY(-1px);
 }
 
-/* Active (current) track */
-/* Active (current) track */
 .hf-style-track.is-active {
   background: linear-gradient(
     90deg,
@@ -1080,7 +971,6 @@ body {
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.55);          /* softer than before */
   color: #e8f1ff;
-  
 }
 
 .hf-style-track-title {
@@ -1089,8 +979,8 @@ body {
   font-weight: 100;
   letter-spacing: 0.06em;      /* a little spacing, but less than labels */
   color: rgba(240, 240, 241, 0.959);
-  
 }
+
 .hf-player-title{
   white-space: nowrap;
   overflow: hidden;
@@ -1104,172 +994,6 @@ body {
   text-transform: uppercase;
   opacity: 0.8;
   color: rgba(86, 175, 211, 0.9);
-}
-
-/* -----------------------------------
-   FOOTER
------------------------------------ */
-
-.hf-footer {
-  text-align: center;
-  padding: 0.1rem 0.3rem 2rem;
-  font-size: 1rem;
-  opacity: 0.65;
-}
-.hf-footer-email {
-  display: block;
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
-  color: #19b0ca;
-  font-weight: 400;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-/* NEW: align email + button nicely without changing your email block spacing */
-.hf-footer-contact {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 0.5rem; /* matches your current .hf-footer-email margin-top */
-  margin-bottom: 0.7rem;
-}
-.hf-footer-contact :hover{
-  color: #666e75;
-}
-
-/* Your link is currently display:block + margin-top; inside flex it should be inline */
-.hf-footer-contact .hf-footer-email {
-  display: inline-block;
-  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
-}
-
-.footer-legal {
-  font-variant: all-small-caps;
-   font-weight: 100;
-}
-
-/* Mobile: keep it clean (stack) */
-@media (max-width: 420px) {
-  .hf-footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-/* -----------------------------------
-   RESPONSIVE
------------------------------------ */
-@media (min-width: 900px) {
-  .hf-style-groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hf-style-group:last-child {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 768px) {
-  .hf-section-shell {
-    padding: 1.8rem 1.6rem;
-    border-radius: 18px;
-  }
-}
-
-@media (max-width: 640px) {
-  .hf-hero {
-    height: 100vh;
-  }
-}
-@media (max-width: 1028px){
-  .hf-player-title{
-    white-space: normal;          /* allow wrapping */
-    
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;        /* max 2 lines */
-    overflow: hidden;
-
-    line-height: 1.25;
-    min-height: calc(1.25em * 2); /* reserve space → no jumping */
-
-    font-size: 0.9rem;            /* optional, tweak to taste */
-  }
-}
-
-/* Center the showreel player perfectly on small screens */
-@media (max-width: 640px) {
-  #showreel .hf-section-shell {
-    padding-left: 0;
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
- 
-
-  /* Background block that holds the card */
-  #showreel .hf-showreel-bg {
-    width: 100%;
-    box-sizing: border-box;        /* width includes padding */
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    padding: 3.2rem 0.7rem 3.6rem;   /* top 3.2rem, sides 1rem, bottom 3.6rem */
-  }
-
-  /* The actual player card */
-  #showreel .hf-player-deck {
-    margin: 0;
-    width: 100%;
-    max-width: 420px;              /* 380 / 400 / 420 – tweak to taste */
-  }
-
-  /* Playlist width matches the card */
-  #showreel .hf-playlist {
-    margin: 0;
-    width: 100%;
-    max-width: 420px;
-  }
-  .hf-progress-track{
-    margin:0.8rem ;
-  }
-}
-
-/* ============================================= */
-/* TABLETS / SURFACE / NEST HUB – TEXT BOOST     */
-/* 900px – 1400px width                          */
-/* ============================================= */
-@media (min-width:820px) and (max-width: 1040px) {
-
-  /* ABOUT copy */
-  #about p,
-  #about li {
-    font-size: 1.20rem !important;   /* bigger than desktop */
-    color: rgba(199, 196, 196, 0.993) !important; /* a bit brighter */
-    
-  }
-
-  .hf-footer a {
-    font-size: 1.20rem;
-  }
-  .hf-footer p {
-    font-size: 1.20rem;
-    color: rgba(163, 161, 161, 0.86) !important;
-  }
-/* HARD OVERRIDE: Tablet screens 700px–1200px */
-  .hf-hero-subletter {
-    font-size: 1.25rem !important;  /* ~23px — guaranteed visible */
-    font-weight: 350;
-  }
-
-  .hf-hero-tagline {
-    font-size: 1.2rem !important;   /* ~19px — balanced */
-    letter-spacing: 0.22em;
-  }
-  .hf-player-text {
-    font-size: 1.2rem !important;
-  }
 }
 
 .hf-track-title-main{
@@ -1287,42 +1011,225 @@ body {
   opacity: 0.7;
 }
 
-/* fading underline (same idea as About section) */
 .hf-title-underline-fade{
   position: relative;
   display: inline-block;
   padding-bottom: 0.2rem;
 }
 
-
-/* soften pipe ONLY inside track cards */
 .hf-style-track-title .hf-track-title-pipe{
   color: rgba(140, 190, 255, 0.75);   /* slightly dimmer */
   text-shadow: 0 0 6px rgba(90, 160, 255, 0.15);
 }
+
+/* ============ FOOTER ============ */
+
+.hf-footer {
+  text-align: center;
+  padding: 0.1rem 0.3rem 2rem;
+  font-size: 1rem;
+  opacity: 0.65;
+}
+
+.hf-footer-email {
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  color: #19b0ca;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.hf-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem; /* matches your current .hf-footer-email margin-top */
+  margin-bottom: 0.7rem;
+}
+
+.hf-footer-contact:hover{
+  color: #666e75;
+}
+
+.hf-footer-contact .hf-footer-email {
+  display: inline-block;
+  margin-top: 0; /* avoid double spacing since wrapper already has margin-top */
+}
+
+.footer-legal {
+  font-variant: all-small-caps;
+  font-weight: 100;
+}
+
+.footer-credit {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.footer-credit a {
+  color: rgba(120, 170, 255, 0.9);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(120, 170, 255, 0.25);
+  padding-bottom: 2px;
+}
+
+.footer-credit a:hover {
+  opacity: 1;
+  border-bottom-color: rgba(120, 170, 255, 0.6);
+}
+
+@media (max-width: 420px) {
+  .hf-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (min-width: 900px) {
+  .hf-style-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hf-style-group:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hf-section-shell {
+    padding: 1.8rem 1.6rem;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hf-hero {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 1028px){
+  .hf-player-title{
+    white-space: normal;          /* allow wrapping */
+    
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;        /* max 2 lines */
+    line-clamp: 2;                /* standard property for compatibility */
+    overflow: hidden;
+
+    line-height: 1.25;
+    min-height: calc(1.25em * 2); /* reserve space → no jumping */
+
+    font-size: 0.9rem;            /* optional, tweak to taste */
+  }
+}
+
+@media (max-width: 640px) {
+  #showreel .hf-section-shell {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #showreel .hf-showreel-bg {
+    width: 100%;
+    box-sizing: border-box;        /* width includes padding */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 3.2rem 0.7rem 3.6rem;   /* top 3.2rem, sides 1rem, bottom 3.6rem */
+  }
+
+  #showreel .hf-player-deck {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;              /* 380 / 400 / 420 – tweak to taste */
+  }
+
+  #showreel .hf-playlist {
+    margin: 0;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .hf-progress-track{
+    margin:0.8rem ;
+  }
+}
+
+@media (min-width:820px) and (max-width: 1040px) {
+
+  body { font-size: 16px; }
+
+  .hf-player-title,
+  .hf-style-title,
+  .hf-style-track-title,
+  .hf-player-style {
+    letter-spacing: 0.06em;
+  }
+
+  .hf-player-title { font-size: 1.05rem; line-height: 1.25; }
+  .hf-style-track-title { font-size: 0.95rem; line-height: 1.35; }
+
+  .hf-track-title-rest { opacity: 0.78; }
+  .hf-player-style { opacity: 0.78; }
+}
+
+.hf-track-title-main{
+  font-weight: 650;
+  opacity: 0.95;
+}
+
+.hf-track-title-pipe{
+  color: rgba(18, 93, 112, 0.699);
+  text-shadow: 0 0 12px rgba(90, 160, 255, 0.25);
+}
+
+.hf-track-title-rest{
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.hf-title-underline-fade{
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+.hf-style-track-title .hf-track-title-pipe{
+  color: rgba(140, 190, 255, 0.75);   /* slightly dimmer */
+  text-shadow: 0 0 6px rgba(90, 160, 255, 0.15);
+}
+
 .hf-style-track-title .hf-track-title-rest{
   opacity: 0.75; /* slightly closer to title */
 }
 
-/* Cards/list rows: restore the old lighter look */
 .hf-style-track-title .hf-track-title-main{
   font-weight: 500;   /* or 450/400 depending on your font */
   opacity: 0.9;
 }
 
-/* Cards: keep the right side close to the old look too */
 .hf-style-track-title .hf-track-title-rest{
   font-weight: 300;
   opacity: 0.75;
 }
 
-/* Optional: soften the pipe in cards */
 .hf-style-track-title .hf-track-title-pipe{
   color: rgba(140, 190, 255, 0.75);
   text-shadow: 0 0 6px rgba(90, 160, 255, 0.12);
 }
 
-/* Tablet portrait-ish widths: iPad Air / iPad Pro 11" */
 @media (min-width: 800px) and (max-width: 1100px) {
 
   /* global reading comfort */
@@ -1344,6 +1251,7 @@ body {
   .hf-track-title-rest { opacity: 0.78; }
   .hf-player-style { opacity: 0.78; }
 }
+
 .footer-credit {
   margin-top: 6px;
   font-size: 0.75rem;
@@ -1363,3 +1271,31 @@ body {
   color: rgba(130, 215, 236, 0.9);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .hf-audio-button:hover {
+    animation: none;
+    transform: none;
+    color: #dff1ff;
+    border-color: #3a6fa5;
+    box-shadow:
+      0 0 8px rgba(58, 111, 165, 0.45),
+      0 0 22px rgba(58, 111, 165, 0.25),
+      inset 0 0 10px rgba(58, 111, 165, 0.15);
+  }
+
+  .hf-audio-button:hover .hf-audio-button__waves {
+    opacity: 0.4;
+  }
+
+  .hf-audio-button:hover .hf-audio-button__waves .bar {
+    animation-duration: 1.2s;
+  }
+
+  .hf-audio-button:active {
+    transform: scale(0.98);
+  }
+
+  .hf-audio-button {
+  -webkit-tap-highlight-color: transparent;
+}
+}

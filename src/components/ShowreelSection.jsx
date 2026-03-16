@@ -102,48 +102,61 @@ const ShowreelSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Create the main WaveSurfer instance once
+  // Create WaveSurfer once when the section becomes visible (and keep it alive)
   useEffect(() => {
     if (!isVisible) return;
     if (!waveformRef.current) return;
     if (waveSurferRef.current) return; // already created
 
     const ws = WaveSurfer.create({
-  container: waveformRef.current,
-  url: currentTrack.src,
+      container: waveformRef.current,
+      url: currentTrack.src,
 
-  // HEIGHT
-  height: 80,              // try 70–90 until you like it
+      // HEIGHT
+      height: 80,              // try 70–90 until you like it
 
-  // IMPORTANT: continuous waveform, not bars
-  barWidth: 0,             // <– remove bars
-  barGap: null,            // <– make sure no gaps
-  cursorWidth: 0,
+      // IMPORTANT: continuous waveform, not bars
+      barWidth: 0,             // <– remove bars
+      barGap: null,            // <– make sure no gaps
+      cursorWidth: 0,
 
-  // COLORS – tweak to taste
-  waveColor: "rgba(10, 55, 115, 0.45)",      // soft navy/teal blend
-progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
-                 // played part (bright)
-  normalize: true,
-  interact: true,
-  
-});
+      // COLORS – tweak to taste
+      waveColor: "rgba(10, 55, 115, 0.45)",      // soft navy/teal blend
+      progressColor: "rgba(18, 110, 175, 0.88)", // richer mid-blue highlight
+      normalize: true,
+      interact: true,
+    });
 
     waveSurferRef.current = ws;
-ws.on("error", (error) => {
-  if (error?.name === "AbortError") return; // ignore fetch aborts (normal)
-  console.error("WaveSurfer error:", error);
-});
-    ws.on("ready", (dur) => {
-  setDuration(dur || 0);
-  setCurrentTime(0);
 
-  // AUTO PLAY IF TRACK WAS CLICKED
-  if (autoplayRef.current) {
-    ws.play();
-    autoplayRef.current = false;
-  }
-});
+    ws.on("error", (error) => {
+      const msg = (error?.name || error?.message || "").toString().toLowerCase();
+      if (msg.includes("abort")) return; // ignore fetch aborts / cancels (normal when switching tracks / scrolling)
+      console.error("WaveSurfer error:", error);
+    });
+
+    // WaveSurfer may internally reject a fetch promise when a load is aborted.
+    // This shows as "Uncaught (in promise) AbortError" in the console.
+    // Listen for the global rejection and suppress it if it's an expected abort.
+    const handleUnhandledRejection = (event) => {
+      const reason = event?.reason;
+      const msg = (reason?.message || reason?.name || "").toString().toLowerCase();
+      if (msg.includes("abort")) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener("unhandledrejection", handleUnhandledRejection);
+
+    ws.on("ready", (dur) => {
+      setDuration(dur || 0);
+      setCurrentTime(0);
+
+      // AUTO PLAY IF TRACK WAS CLICKED
+      if (autoplayRef.current) {
+        ws.play();
+        autoplayRef.current = false;
+      }
+    });
 
     ws.on("timeupdate", (time) => {
       setCurrentTime(time || 0);
@@ -153,12 +166,23 @@ ws.on("error", (error) => {
     ws.on("pause", () => setIsPlaying(false));
     ws.on("finish", () => setIsPlaying(false));
 
+    // Note: We don't destroy WaveSurfer here to keep it alive when scrolling out of view
+    // It will be destroyed when the component unmounts
     return () => {
-      ws.destroy();
-      waveSurferRef.current = null;
+      window.removeEventListener("unhandledrejection", handleUnhandledRejection);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
+
+  // Cleanup WaveSurfer when component unmounts
+  useEffect(() => {
+    return () => {
+      if (waveSurferRef.current) {
+        waveSurferRef.current.destroy();
+        waveSurferRef.current = null;
+      }
+    };
+  }, []);
 
   // When the current track changes, load it into WaveSurfer
   useEffect(() => {
