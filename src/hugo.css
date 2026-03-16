@@ -63,7 +63,7 @@ body {
   letter-spacing: 0.15em;
   font-size: 1.1rem;
   opacity: 0.8;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .hf-hero h1 {
@@ -369,21 +369,21 @@ body {
   padding: 4rem 1.5rem;
 }
 
-.hf-section-shell {
+.hf-section-bio {
   max-width: 980px;
   margin: 0 auto;
   padding: 2.4rem 2.6rem;
-  border-radius: 26px;
+  border-radius: 20px;
   background: radial-gradient(
     circle at top,
-    rgba(40, 80, 160, 0.22) 0%,
-    rgba(5, 7, 15, 0.98) 55%,
-    rgba(5, 7, 15, 1) 100%
+    rgb(0, 2, 5) 0%,
+    rgba(0, 1, 7, 0.98) 55%,
+    rgba(6, 56, 90, 0.548) 100%
   );
-  border: 1px solid rgba(120, 170, 255, 0.18);
+  border: 1px solid rgb(0, 4, 10);
   box-shadow:
     0 32px 70px rgba(0, 0, 0, 0.9),
-    0 0 25px rgba(10, 80, 200, 0.24);
+    0 0 25px rgba(10, 124, 200, 0.349);
 }
 
 .hf-bio-intro {
@@ -428,33 +428,35 @@ body {
 }
 
 .hf-link-button {
-  margin-top: 1.4rem;
-  padding: 0.5rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid rgba(130, 170, 255, 0.55);
-  background: transparent;
-  color: #e3e9ff;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+
+  border-radius: 999px;
+  border: 1px solid rgba(120,170,255,0.35);
+
+  background: transparent;
+  color: rgba(200,220,255,0.9);
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
 .hf-link-button:hover {
-  background: rgba(18, 60, 120, 0.7);
-  border-color: rgba(160, 205, 255, 0.9);
-  box-shadow: 0 0 12px rgba(60, 130, 230, 0.45);
+  border-color: rgba(9, 133, 182, 0.8);
+  color: rgba(255, 255, 255, 0.959);
+  box-shadow: 0 0 8px rgba(100, 198, 255, 0.493);
 }
 
 .hf-bio-extra .hf-links a,
 .hf-bio-extra .hf-links a:visited {
-  color: #359fdd !important;
+  color: #047381 !important;
   text-decoration: none;
+  font-size: 17px;
 }
 
 .hf-bio-extra .hf-links a:hover {
@@ -483,7 +485,7 @@ body {
   opacity: 0.7;
   box-shadow:
     0 0 35px rgba(60, 120, 255, 0.25),
-    inset 0 0 0 1px rgba(140, 180, 255, 0.25);
+    inset 0 0 0 1px rgba(140, 180, 255, 0.534);
 }
 
 @media (max-width: 900px) {
@@ -503,10 +505,10 @@ body {
 .hf-availability-text h3 {
   font-size: 0.9rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   position: relative;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .hf-availability-text h3::after {
@@ -517,7 +519,7 @@ body {
   margin-top: 0.5rem;
   background: linear-gradient(
     90deg,
-    rgba(120, 160, 255, 0.6),
+    rgb(5, 136, 129),
     transparent
   );
 }
@@ -538,7 +540,7 @@ body {
   width: 1px;
   background: linear-gradient(
     to top,
-    rgba(140, 160, 255, 0.45),
+    rgba(6, 175, 187, 0.555),
     rgba(140, 160, 255, 0.25),
     rgba(140, 160, 255, 0)
   );
@@ -554,6 +556,23 @@ body {
 .hf-credits {
   padding: 4.8rem 0 2.8rem; /* tiny lift in spacing */
   position: relative;
+}
+
+.hf-section-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2.4rem 2.6rem;
+  border-radius: 26px;
+  background: radial-gradient(
+    circle at top,
+    rgba(40, 80, 160, 0.22) 0%,
+    rgba(5, 7, 15, 0.98) 55%,
+    rgba(5, 7, 15, 1) 100%
+  );
+  border: 1px solid rgba(120, 170, 255, 0.18);
+  box-shadow:
+    0 32px 70px rgba(0, 0, 0, 0.9),
+    0 0 25px rgba(10, 80, 200, 0.24);
 }
 
 .hf-credits-grid {
@@ -583,8 +602,12 @@ body {
 }
 
 .hf-credit-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(120, 170, 255, 0.32);
+  transform: translateY(-4px);
+  border-color: rgba(24, 87, 189, 0.48);
+  box-shadow:
+    0 22px 44px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(80, 130, 255, 0.16),
+    0 0 0 1px rgba(10, 20, 40, 0.6);
 }
 
 .hf-credit-card.is-link {
@@ -600,36 +623,39 @@ body {
 }
 
 .hf-credit-studio {
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.78;
+  color: rgba(220, 230, 245, 0.863);
 }
 
 .hf-credit-tag {
-  font-size: 0.78rem;
-  padding: 0.25rem 0.55rem;
+  font-size: 0.74rem;
+  padding: 0.22rem 0.52rem;
   border-radius: 999px;
-  border: 1px solid rgba(120, 170, 255, 0.28);
-  background: rgba(20, 50, 100, 0.22);
-  letter-spacing: 0.08em;
+  border: 1px solid rgba(120, 170, 255, 0.22);
+  background: rgba(20, 50, 100, 0.18);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0.86;
   white-space: nowrap;
 }
 
 .hf-credit-title {
-  font-size: 1.08rem;
-  font-weight: 550;
-  letter-spacing: 0.042em;
-  margin-bottom: 0.5rem;
+  font-size: 1.14rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin-bottom: 0.55rem;
+  color: #eef4ff;
 }
 
 .hf-credit-meta {
-  font-size: 0.95rem;
-  opacity: 0.78;
-  line-height: 1.45;
-  color: #d8e0e6;
+  font-size: 0.93rem;
+  opacity: 0.72;
+  line-height: 1.5;
+  color: #cfd8e3;
 }
 
 .hf-credits-note {
@@ -696,12 +722,12 @@ body {
 }
 
 .hf-showreel-bg {
-  margin-top: 2.5rem;
+  margin-top: 2.3rem;
   padding: 3.2rem 3rem 3.6rem;   /* more top & bottom space */
   border-radius: 28px;
 
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.699), rgba(0, 0, 0, 0.9)),
     url("/images/studio-background.jpg");
   background-size: cover;
   background-position: center 45%;

@@ -10,9 +10,9 @@ const About = () => {
 
   return (
     <section className="hf-bio" id="about">
-        <div className="hf-section-shell">
+        <div className="hf-section-bio">
             <div className="hf-section-title">
-                <h2>About</h2>
+                <h2> ABOUT COMPOSER</h2>
             <div className="hf-title-glow"></div>
         </div>
 
