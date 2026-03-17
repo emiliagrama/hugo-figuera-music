@@ -383,7 +383,7 @@ body {
   border: 1px solid rgb(0, 4, 10);
   box-shadow:
     0 32px 70px rgba(0, 0, 0, 0.9),
-    0 0 25px rgba(10, 124, 200, 0.349);
+    0 0 15px rgba(10, 124, 200, 0.349);
 }
 
 .hf-bio-intro {
@@ -436,7 +436,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.14em;
 
-  border-radius: 999px;
+  border-radius: 7px;
   border: 1px solid rgba(120,170,255,0.35);
 
   background: transparent;
@@ -1319,4 +1319,411 @@ body {
   .hf-audio-button {
   -webkit-tap-highlight-color: transparent;
 }
+}
+
+/* =========================
+   CONTACT OVERLAY
+========================= */
+
+.contactOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* backdrop */
+.contactOverlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 8, 20, 0.85);
+  backdrop-filter: blur(14px);
+}
+
+/* =========================
+   PANEL (matches your cards)
+========================= */
+
+.contactOverlay__panel {
+  position: relative;
+  width: min(680px, 92%);
+  padding: 48px 42px;
+  border-radius: 20px;
+
+   background:
+    radial-gradient(
+      600px 300px at 20% 10%,
+      rgba(9, 40, 66, 0.705),
+      transparent 60%
+    ),
+    radial-gradient(
+      500px 250px at 80% 90%,
+      rgba(4, 59, 82, 0.295),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 15, 30, 0.95),
+      rgba(5, 8, 18, 0.98)
+    );
+
+  border: 1px solid rgba(29, 159, 182, 0.219);
+
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.7),
+    inset 0 0 13px rgba(14, 46, 121, 0.658);
+
+  z-index: 2;
+
+  animation: contactFade 0.35s ease;
+}
+
+@keyframes contactFade {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.contactOverlay__close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: rgb(35, 81, 207);
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.contactOverlay__close:hover {
+  color: white;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.contactOverlay__content h2 {
+  font-size: 30px;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.contactOverlay__intro {
+  font-size: 15px;
+  opacity: 0.65;
+  margin-bottom: 32px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.contactOverlay__form {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+  
+}
+
+/* inputs */
+.contactOverlay__form input,
+.contactOverlay__form textarea {
+  width: 650px;
+  padding: 13px 15px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(120, 170, 255, 0.15);
+
+  color: white;
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+.contactOverlay__form input:-webkit-autofill,
+.contactOverlay__form input:-webkit-autofill:hover,
+.contactOverlay__form input:-webkit-autofill:focus,
+.contactOverlay__form textarea:-webkit-autofill,
+.contactOverlay__form textarea:-webkit-autofill:hover,
+.contactOverlay__form textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #eaf2ff;
+  box-shadow: 0 0 0 1000px rgba(10, 16, 32, 0.96) inset;
+  -webkit-box-shadow: 0 0 0 1000px rgba(10, 16, 32, 0.96) inset;
+  transition: background-color 9999s ease-in-out 0s;
+  border: 1px solid rgba(120, 170, 255, 0.15);
+}
+.contactOverlay__form input:focus,
+.contactOverlay__form textarea:focus {
+  outline: none;
+  border-color: rgba(22, 98, 190, 0.637);
+  box-shadow: 0 0 12px rgba(120, 181, 255, 0.151);
+}
+
+/* placeholders */
+.contactOverlay__form input::placeholder,
+.contactOverlay__form textarea::placeholder {
+  color: rgba(200, 220, 255, 0.35);
+}
+
+/* CTA */
+.contactOverlay__form button {
+  margin-top: 7px;
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+
+  background: linear-gradient(
+    135deg,
+    rgba(15, 79, 190, 0.95),
+    rgba(7, 90, 110, 0.7)
+  );
+
+  color: #05070f;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 430px;
+  margin-left: 130px;
+  transition: all 0.2s ease;
+}
+
+.contactOverlay__form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 10px rgba(120, 181, 255, 0.363);
+}
+
+/* =========================
+   ALT EMAIL
+========================= */
+
+.contactOverlay__alt {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-bottom: 6px;
+}
+
+.contactOverlay__email {
+  font-size: 14px;
+  color: rgba(24, 165, 165, 0.753);
+  text-decoration: none;
+}
+
+.contactOverlay__email:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   PRE FOOTER CTA
+========================= */
+
+.preFooterCTA {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  max-width: 600px;
+  margin: 140px auto 100px;
+  padding: 64px 40px;
+  text-align: center;
+  border-radius: 28px;
+
+  background: radial-gradient(
+    circle at top,
+    rgb(0, 6, 17),
+    rgba(0, 1, 5, 0.95)
+  );
+
+  border: 1px solid rgba(60, 201, 236, 0.027);
+
+  box-shadow:
+    0 5px 25px rgba(4, 235, 243, 0.192),
+    inset 0 0 15px rgba(60, 216, 255, 0.212);
+}
+
+/* moving waveform bg */
+.preFooterCTA::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(5, 8, 18, 0.411) 0%,
+      rgba(5, 8, 18, 0.027) 40%,
+      rgba(5, 8, 18, 0.226) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(17, 17, 19, 0.171) 0%,
+      rgba(5, 8, 18, 0.356) 50%,
+      rgba(240, 241, 245, 0.062) 100%
+    ),
+    var(--contact-wave-bg);
+
+  background-size: cover;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+
+  /* THIS is what you were missing */
+  opacity: 0.88;
+
+  /* boost visibility */
+  filter: contrast(1.2) brightness(1.1);
+
+  transform-origin: center;
+  will-change: transform;
+
+  animation: contactWaveDrift 18s ease-in-out infinite alternate;
+}
+
+
+/* keep content above */
+.preFooterCTA > * {
+  position: relative;
+  z-index: 2;
+}
+
+.preFooterCTA h3 {
+  font-size: 23px;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.preFooterCTA p {
+  font-size: 15px;
+  opacity: 0.7;
+  margin-bottom: 28px;
+}
+
+.preFooterCTA button {
+  padding: 14px 34px;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 23, 131, 0.795),
+    rgba(57, 161, 221, 0.6)
+  );
+  border: none;
+  color: #0d0e0e;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.preFooterCTA button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(70, 140, 255, 0.18);
+  filter: brightness(1.03);
+}
+
+@keyframes contactWaveDrift {
+  0% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-10px, -4px, 0);
+  }
+}
+
+@media (max-width: 700px) {
+  .preFooterCTA {
+    margin: 110px 16px 80px;
+    padding: 42px 22px;
+  }
+
+  .preFooterCTA h3 {
+    font-size: 20px;
+  }
+}
+
+.contactOverlay__error {
+  margin: -6px 0 4px;
+  font-size: 0.9rem;
+  color: #ec3939;
+}
+
+.contactOverlay__form .is-error {
+  border-color: rgba(255, 120, 120, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 120, 120, 0.2);
+}
+
+.contactOverlay__success {
+  display: grid;
+  gap: 14px;
+}
+
+.contactOverlay__eyebrow {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: rgba(120, 180, 255, 0.8);
+}
+
+.contactOverlay__success p {
+  color: rgba(230, 240, 255, 0.75);
+}
+/* =========================
+   MOBILE FIX — CLEAN VERSION
+========================= */
+
+@media (max-width: 768px) {
+
+  .contactOverlay {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactOverlay__card {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px;
+    border-radius: 18px;
+
+    /* 🔥 prevent overflow bug */
+    box-sizing: border-box;
+  }
+
+  .contactOverlay__form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contactOverlay__form input,
+  .contactOverlay__form textarea {
+    width: 100%;
+    box-sizing: border-box; /* 🔥 CRITICAL */
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .contactOverlay__submit {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    margin-top: 10px;
+  }
+
+  .contactOverlay__footer {
+    margin-top: 16px;
+  }
 }
