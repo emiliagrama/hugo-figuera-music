@@ -1675,7 +1675,12 @@ body {
   letter-spacing: 0.18em;
   color: rgba(120, 180, 255, 0.8);
 }
-
+.contactOverlay__honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
 .contactOverlay__success p {
   color: rgba(230, 240, 255, 0.75);
 }

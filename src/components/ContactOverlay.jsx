@@ -5,6 +5,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
     name: "",
     email: "",
     message: "",
+    website: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -35,7 +36,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
 
     if (!values.email.trim()) {
       nextErrors.email = "Please enter your email.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       nextErrors.email = "Please enter a valid email address.";
     }
 
@@ -68,7 +69,14 @@ export default function ContactOverlay({ isOpen, onClose }) {
     event.preventDefault();
     setServerError("");
 
-    const validationErrors = validate(form);
+    const trimmedForm = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+      website: form.website,
+    };
+
+    const validationErrors = validate(trimmedForm);
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -83,11 +91,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        }),
+        body: JSON.stringify(trimmedForm),
       });
 
       const text = await response.text();
@@ -108,8 +112,10 @@ export default function ContactOverlay({ isOpen, onClose }) {
         name: "",
         email: "",
         message: "",
+        website: "",
       });
       setErrors({});
+      setServerError("");
     } catch (error) {
       setServerError(error.message || "Failed to send message.");
     } finally {
@@ -117,15 +123,22 @@ export default function ContactOverlay({ isOpen, onClose }) {
     }
   }
 
+  function handleClose() {
+    if (isSending) return;
+    onClose();
+  }
+
   return (
     <div className="contactOverlay">
-      <div className="contactOverlay__backdrop" onClick={onClose} />
+      <div className="contactOverlay__backdrop" onClick={handleClose} />
 
       <div className="contactOverlay__panel">
         <button
           className="contactOverlay__close"
-          onClick={onClose}
+          onClick={handleClose}
           type="button"
+          disabled={isSending}
+          aria-label="Close contact form"
         >
           ✕
         </button>
@@ -150,6 +163,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
                   value={form.name}
                   onChange={handleChange}
                   className={errors.name ? "is-error" : ""}
+                  autoComplete="name"
                 />
                 {errors.name && (
                   <p className="contactOverlay__error">{errors.name}</p>
@@ -162,6 +176,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
                   value={form.email}
                   onChange={handleChange}
                   className={errors.email ? "is-error" : ""}
+                  autoComplete="email"
                 />
                 {errors.email && (
                   <p className="contactOverlay__error">{errors.email}</p>
@@ -179,6 +194,17 @@ export default function ContactOverlay({ isOpen, onClose }) {
                 {errors.message && (
                   <p className="contactOverlay__error">{errors.message}</p>
                 )}
+
+                <input
+                  type="text"
+                  name="website"
+                  value={form.website}
+                  onChange={handleChange}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  className="contactOverlay__honeypot"
+                  aria-hidden="true"
+                />
 
                 {serverError && (
                   <p className="contactOverlay__error">{serverError}</p>
@@ -213,6 +239,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
                     name: "",
                     email: "",
                     message: "",
+                    website: "",
                   });
                   setErrors({});
                   setServerError("");

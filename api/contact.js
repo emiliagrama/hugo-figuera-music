@@ -2,58 +2,81 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    console.log("API hit");
-    console.log("Has API key:", !!process.env.RESEND_API_KEY);
+    const { name, email, message, website } = req.body || {};
 
-    const { name, email, message } = req.body || {};
-    console.log("Body:", { name, email, hasMessage: !!message });
-
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: "Missing fields" });
+    // honeypot field
+    if (website) {
+      return res.status(200).json({ ok: true });
     }
 
-const result = await resend.emails.send({
-  from: "Hugo Site <contact@hugofigueramusic.com>",
-  to: ["emiliagrama@gmail.com"],
-  reply_to: email,
-  subject: `New message from ${name}`,
-  html: `
-    <h2>New message</h2>
-    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-    <p>${escapeHtml(message)}</p>
-  `,
-});
+    if (!name || name.trim().length < 2) {
+      return res.status(400).json({ error: "Invalid name." });
+    }
 
-    console.log("RESEND RESULT:", JSON.stringify(result, null, 2));
+    if (!email || !isValidEmail(email)) {
+      return res.status(400).json({ error: "Invalid email." });
+    }
 
-    if (!result || result.error) {
-      console.error("RESEND ERROR:", result?.error);
-      return res.status(500).json({
-        error: result?.error?.message || "Email failed to send",
-      });
+    if (!message || message.trim().length < 12) {
+      return res.status(400).json({ error: "Message too short." });
+    }
+
+    const safeName = escapeHtml(name.trim());
+    const safeEmail = escapeHtml(email.trim());
+    const safeMessage = escapeHtml(message.trim()).replace(/\n/g, "<br />");
+
+    const { error } = await resend.emails.send({
+      from: "Hugo Site <onboarding@resend.dev>",
+      to: process.env.CONTACT_EMAIL,
+      replyTo: email.trim(),
+      subject: `New message from ${name.trim()}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
+          <h2>New message</h2>
+          <p><strong>Name:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
+          <p><strong>Message:</strong></p>
+          <div>${safeMessage}</div>
+        </div>
+      `,
+      text: `
+New message
+
+Name: ${name.trim()}
+Email: ${email.trim()}
+
+Message:
+${message.trim()}
+      `.trim(),
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(500).json({ error: "Failed to send email." });
     }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("API catch error:", err);
-    return res.status(500).json({
-      error: err?.message || "Server error",
-    });
+    console.error("Contact API error:", err);
+    return res.status(500).json({ error: "Server error." });
   }
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 }
