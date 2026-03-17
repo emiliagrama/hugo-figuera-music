@@ -18,17 +18,18 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Missing fields" });
     }
 
-    const result = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: ["contact@hugofigueramusic.com"],
-      subject: "Test email from Hugo site",
-      html: `
-        <h2>New message</h2>
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p>${escapeHtml(message)}</p>
-      `,
-    });
+const result = await resend.emails.send({
+  from: "Hugo Site <contact@hugofigueramusic.com>",
+  to: ["contact@hugofigueramusic.com"],
+  reply_to: email,
+  subject: `New message from ${name}`,
+  html: `
+    <h2>New message</h2>
+    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    <p>${escapeHtml(message)}</p>
+  `,
+});
 
     console.log("RESEND RESULT:", JSON.stringify(result, null, 2));
 
