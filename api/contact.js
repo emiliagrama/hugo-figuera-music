@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     }
 
     const { error } = await resend.emails.send({
-      from: "Hugo Site <contact@hugofigueramusic.com>",
+      from: "Hugo Site <onboarding@resend.dev>",
       to: ["contact@hugofigueramusic.com"],
       reply_to: email,
       subject: `New message from ${name}`,
