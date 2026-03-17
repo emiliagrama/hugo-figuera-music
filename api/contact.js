@@ -11,6 +11,8 @@ function escapeHtml(value = "") {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
@@ -31,7 +33,6 @@ export default async function handler(req, res) {
   try {
     const { name, email, message, website } = req.body || {};
 
-    // Honeypot field for bots
     if (website) {
       return res.status(200).json({ ok: true });
     }
@@ -77,14 +78,20 @@ ${message.trim()}
       `.trim(),
     });
 
+    console.log("RESEND RESULT:", JSON.stringify(result, null, 2));
+
     if (result.error) {
       console.error("Resend error:", result.error);
-      return res.status(500).json({ error: "Failed to send email." });
+      return res.status(500).json({
+        error: result.error.message || "Failed to send email.",
+      });
     }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("Contact API error:", err);
-    return res.status(500).json({ error: "Server error." });
+    return res.status(500).json({
+      error: err?.message || "Server error.",
+    });
   }
 }
