@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
 const result = await resend.emails.send({
   from: "Hugo Site <contact@hugofigueramusic.com>",
-  to: ["contact@hugofigueramusic.com"],
+  to: ["emiliagrama@gmail.com"],
   reply_to: email,
   subject: `New message from ${name}`,
   html: `
