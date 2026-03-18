@@ -116,9 +116,9 @@ export default function ContactOverlay({ isOpen, onClose }) {
       });
       setErrors({});
       setServerError("");
-    } catch (error) {
-      setServerError(error.message || "Failed to send message.");
-    } finally {
+      } catch (error) {
+        setServerError(error?.message || "Failed to send message.");
+      } finally {
       setIsSending(false);
     }
   }
