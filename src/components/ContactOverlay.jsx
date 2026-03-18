@@ -65,63 +65,66 @@ export default function ContactOverlay({ isOpen, onClose }) {
     setServerError("");
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setServerError("");
+ async function handleSubmit(event) {
+  event.preventDefault();
+  setServerError("");
 
-    const trimmedForm = {
-      name: form.name.trim(),
-      email: form.email.trim(),
-      message: form.message.trim(),
-      website: form.website,
-    };
+  const trimmedForm = {
+    name: form.name.trim(),
+    email: form.email.trim(),
+    message: form.message.trim(),
+    website: form.website,
+  };
 
-    const validationErrors = validate(trimmedForm);
+  const validationErrors = validate(trimmedForm);
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    try {
-      setIsSending(true);
-
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(trimmedForm),
-      });
-
-      const text = await response.text();
-      let data = {};
-
-      try {
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        throw new Error("Server returned an invalid response.");
-      }
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message.");
-      }
-
-      setSubmitted(true);
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-        website: "",
-      });
-      setErrors({});
-      setServerError("");
-      } catch (error) {
-        setServerError(error?.message || "Failed to send message.");
-      } finally {
-      setIsSending(false);
-    }
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
   }
+
+  try {
+    setIsSending(true);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+        subject: `New message from ${trimmedForm.name}`,
+        from_name: "Hugo Site",
+        name: trimmedForm.name,
+        email: trimmedForm.email,
+        message: trimmedForm.message,
+        replyto: trimmedForm.email,
+        botcheck: trimmedForm.website,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Failed to send message.");
+    }
+
+    setSubmitted(true);
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+      website: "",
+    });
+    setErrors({});
+    setServerError("");
+  } catch (error) {
+    setServerError(error?.message || "Failed to send message.");
+  } finally {
+    setIsSending(false);
+  }
+}
 
   function handleClose() {
     if (isSending) return;
