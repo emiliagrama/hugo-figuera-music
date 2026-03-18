@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     const safeMessage = escapeHtml(message.trim()).replace(/\n/g, "<br />");
 
     const result = await resend.emails.send({
-      from: "Hugo Site <contact@send.hugofigueramusic.com>",
+      from: "Hugo Site <contact@hugofigueramusic.com>",
       to: process.env.CONTACT_EMAIL,
       replyTo: email.trim(),
       subject: `New message from ${name.trim()}`,
