@@ -159,6 +159,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
                 <input
                   type="text"
                   name="name"
+                  spellCheck={false}
                   placeholder="Your name"
                   value={form.name}
                   onChange={handleChange}
