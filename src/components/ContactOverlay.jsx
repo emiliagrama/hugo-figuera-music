@@ -233,6 +233,7 @@ export default function ContactOverlay({ isOpen, onClose }) {
 
               <button
                 type="button"
+                className="contactOverlay__submit contactOverlay__submit--secondary"
                 onClick={() => {
                   setSubmitted(false);
                   setForm({

@@ -1732,45 +1732,50 @@ body {
     margin-top: 16px;
   }
 }
-.contactSubmitBtn {
-  position: relative;
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 999px;
+.contactOverlay__submit {
+  width: 100%;
   border: none;
-  font-weight: 500;
-  font-size: 15px;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 0.98rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
-  color: white;
+  color: #f5f7ff;
   cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    opacity 0.22s ease,
+    background 0.22s ease;
+}
 
+.contactOverlay__submit:hover {
+  transform: translateY(-1px);
+}
+
+.contactOverlay__submit:active {
+  transform: translateY(0);
+}
+
+.contactOverlay__submit--secondary {
+  margin-top: 1.4rem;
   background: linear-gradient(
     135deg,
-    rgba(40, 90, 220, 0.9),
-    rgba(20, 180, 200, 0.9)
+    rgba(32, 99, 255, 0.88) 0%,
+    rgba(0, 184, 255, 0.82) 100%
   );
-
   box-shadow:
-    0 10px 30px rgba(40, 90, 220, 0.25),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
-
-  transition: all 0.25s ease;
+    0 10px 30px rgba(0, 120, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-.contactSubmitBtn:hover {
-  transform: translateY(-2px);
+.contactOverlay__submit--secondary:hover {
   box-shadow:
-    0 14px 40px rgba(40, 90, 220, 0.35),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    0 14px 38px rgba(0, 120, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
-.contactSubmitBtn:active {
-  transform: translateY(0px);
-  box-shadow:
-    0 6px 18px rgba(40, 90, 220, 0.25);
-}
-
-.contactSubmitBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.contactOverlay__submit--secondary:focus-visible {
+  outline: 2px solid rgba(120, 190, 255, 0.9);
+  outline-offset: 3px;
 }
