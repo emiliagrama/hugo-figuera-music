@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
     const result = await resend.emails.send({
       from: "Hugo Website <contact@emiliagrama.com>",
-      to: process.env.HUGO_CONTACT_EMAIL,
+      to: process.env.CONTACT_EMAIL,
       replyTo: cleanEmail,
       subject: `New contact message from ${cleanName}`,
       text: `Name: ${cleanName}\nEmail: ${cleanEmail}\n\nMessage:\n${cleanMessage}`,
