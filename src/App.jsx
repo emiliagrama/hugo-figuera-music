@@ -5,6 +5,7 @@ import About from "./components/About.jsx";
 import Credits from "./components/Credits";
 import ShowreelSection from "./components/ShowreelSection.jsx";
 import Footer from "./components/Footer.jsx";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
       />
+      <Analytics />
     </div>
   );
 }
