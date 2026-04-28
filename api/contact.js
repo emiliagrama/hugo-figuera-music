@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     const cleanMessage = message.trim();
 
     const result = await resend.emails.send({
-      from: "Hugo Website <contact@emiliagrama.com>",
+      from: "Hugo Website <contact@hugofigueramusic.com>",
       to: process.env.CONTACT_EMAIL,
       replyTo: cleanEmail,
       subject: `New contact message from ${cleanName}`,
