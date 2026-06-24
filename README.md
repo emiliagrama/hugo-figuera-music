@@ -1,16 +1,48 @@
-# React + Vite
+# Hugo Figuera
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Production portfolio website built for a professional music producer.
 
-Currently, two official plugins are available:
+## Project Goals
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Showcase music releases
+- Present professional work
+- Provide contact information
+- Create a strong online presence
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Responsive design
+- Music showcase
+- Media galleries
+- Contact section
+- SEO optimization
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Ruby on Rails
+- PostgreSQL
+- JavaScript
+- CSS
+
+## Live Demo
+
+[(put the live URL)](https://www.hugofigueramusic.com/)
+
+## Screenshots
+
+<img width="1882" height="877" alt="image" src="https://github.com/user-attachments/assets/a9372519-5ff3-428d-a049-31db6cb26ec2" />
+
+
+<img width="1888" height="896" alt="image" src="https://github.com/user-attachments/assets/fc6712fb-737a-4554-8571-c05fef53095a" />
+
+
+
+## Challenges Solved
+
+- Responsive media presentation
+- Performance optimization
+- SEO improvements
+
+## Project Type
+
+Client project delivered for a professional musician.
